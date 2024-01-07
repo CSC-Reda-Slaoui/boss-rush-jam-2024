@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var state_machine = get_node("AnimationTree")["parameters/playback"]
+
 var dialogue = [
 	"Who dares intrude upon my domain, stumbling blindly into the abyss?",
 	"I seek passage to the temple atop Wraithpeak Mountain. I must break this curse that binds me here.",
@@ -12,19 +14,7 @@ var dialogue = [
 
 var finished_dialogue = false
 var current_dialogue = 0
-
-func _ready():
-	get_node("CanvasLayer/Panel").position.x = 50
-	get_node("CanvasLayer/Panel").size.x = get_viewport_rect().size.x - 50
-	
-	get_node("CanvasLayer/Label").position.x = 50
-	get_node("CanvasLayer/Label").size.x = get_viewport_rect().size.x - 50
-	
-	get_node("CanvasLayer/Panel").position.y = get_viewport_rect().size.y - 200
-	get_node("CanvasLayer/Panel").size.y = 50
-	
-	get_node("CanvasLayer/Label").position.y = get_viewport_rect().size.y - 200
-	get_node("CanvasLayer/Label").size.y = 50
+var entered = false
 
 func _physics_process(delta):
 	if not finished_dialogue:
@@ -35,7 +25,9 @@ func _physics_process(delta):
 			get_node("CanvasLayer/Label").text = "You: " + dialogue[current_dialogue]
 		if Input.is_action_just_pressed("dialogue"):
 			current_dialogue += 1
-
+		if current_dialogue == 2 and not entered:
+			state_machine.travel("enter")
+			entered = true
 		if current_dialogue == len(dialogue) - 1:
 			finished_dialogue = true
 		

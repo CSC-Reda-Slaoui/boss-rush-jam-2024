@@ -21,9 +21,8 @@ Dialogue="*res://dialogue.gd"
 
 [display]
 
-window/size/viewport_width=1366
-window/size/viewport_height=768
 window/size/mode=3
+window/stretch/mode="viewport"
 
 [input]
 

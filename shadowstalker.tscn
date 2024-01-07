@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://lljogc8qagw3"]
+[gd_scene load_steps=35 format=3 uid="uid://lljogc8qagw3"]
 
 [ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
 [ext_resource type="Script" path="res://shadowstalker.gd" id="1_yid1n"]
@@ -90,9 +90,6 @@ animation = &"enter"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj20b"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vavbv"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xc6b"]
 switch_mode = 2
 advance_mode = 2
@@ -103,7 +100,7 @@ states/enter/node = SubResource("AnimationNodeAnimation_cyk3j")
 states/enter/position = Vector2(341, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_rj20b")
 states/idle/position = Vector2(474, 100)
-transitions = ["Start", "enter", SubResource("AnimationNodeStateMachineTransition_vavbv"), "enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
+transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
 
 [node name="Shadowstalker" type="CharacterBody2D"]
 script = ExtResource("1_yid1n")
@@ -131,25 +128,23 @@ anim_player = NodePath("../AnimationPlayer")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -161.0
-offset_right = 473.0
-offset_bottom = -101.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 1136.0
+offset_bottom = -17.0
 grow_vertical = 0
-scale = Vector2(3, 3)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -128.0
-offset_right = 470.0
-offset_bottom = -93.0
+offset_left = 32.0
+offset_top = -96.0
+offset_right = 1120.0
+offset_bottom = -24.0
 grow_vertical = 0
-scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("25_slfys")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
