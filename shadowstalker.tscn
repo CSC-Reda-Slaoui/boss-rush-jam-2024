@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://lljogc8qagw3"]
+[gd_scene load_steps=36 format=3 uid="uid://lljogc8qagw3"]
 
 [ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
+[ext_resource type="Script" path="res://shadowstalker.gd" id="1_yid1n"]
 [ext_resource type="Texture2D" uid="uid://b5xqmngs6d63r" path="res://art/bosses/shadowstalker/enter/enter1.png" id="2_2mfeg"]
 [ext_resource type="Texture2D" uid="uid://ceulkmjgnwkss" path="res://art/bosses/shadowstalker/enter/enter2.png" id="3_ff0f8"]
 [ext_resource type="Texture2D" uid="uid://b3t2564e24ycu" path="res://art/bosses/shadowstalker/enter/enter3.png" id="4_kn31n"]
@@ -23,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dxvpyam4bj2ds" path="res://art/bosses/shadowstalker/idle/idle2.png" id="21_4f7w4"]
 [ext_resource type="Texture2D" uid="uid://ceu2pmxfc5wta" path="res://art/bosses/shadowstalker/idle/idle3.png" id="22_vn6kn"]
 [ext_resource type="Texture2D" uid="uid://cl4kf6fkvrnb5" path="res://art/bosses/shadowstalker/idle/idle4.png" id="23_mck68"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="25_slfys"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhv3k"]
 size = Vector2(28, 32)
@@ -104,6 +106,7 @@ states/idle/position = Vector2(474, 100)
 transitions = ["Start", "enter", SubResource("AnimationNodeStateMachineTransition_vavbv"), "enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
 
 [node name="Shadowstalker" type="CharacterBody2D"]
+script = ExtResource("1_yid1n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -121,3 +124,32 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_hvut3")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -161.0
+offset_right = 473.0
+offset_bottom = -101.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -128.0
+offset_right = 470.0
+offset_bottom = -93.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("25_slfys")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
