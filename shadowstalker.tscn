@@ -1,0 +1,123 @@
+[gd_scene load_steps=34 format=3 uid="uid://lljogc8qagw3"]
+
+[ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
+[ext_resource type="Texture2D" uid="uid://b5xqmngs6d63r" path="res://art/bosses/shadowstalker/enter/enter1.png" id="2_2mfeg"]
+[ext_resource type="Texture2D" uid="uid://ceulkmjgnwkss" path="res://art/bosses/shadowstalker/enter/enter2.png" id="3_ff0f8"]
+[ext_resource type="Texture2D" uid="uid://b3t2564e24ycu" path="res://art/bosses/shadowstalker/enter/enter3.png" id="4_kn31n"]
+[ext_resource type="Texture2D" uid="uid://b36nolfkvnw54" path="res://art/bosses/shadowstalker/enter/enter4.png" id="5_c6pql"]
+[ext_resource type="Texture2D" uid="uid://df2hqriehfwu1" path="res://art/bosses/shadowstalker/enter/enter5.png" id="6_q5btq"]
+[ext_resource type="Texture2D" uid="uid://dswhqepx3c7de" path="res://art/bosses/shadowstalker/enter/enter6.png" id="7_56w7m"]
+[ext_resource type="Texture2D" uid="uid://slsxkhqhd8lb" path="res://art/bosses/shadowstalker/enter/enter7.png" id="8_k7tls"]
+[ext_resource type="Texture2D" uid="uid://dbkr72apd1wrx" path="res://art/bosses/shadowstalker/enter/enter8.png" id="9_bn3nc"]
+[ext_resource type="Texture2D" uid="uid://3p2ixkavap0u" path="res://art/bosses/shadowstalker/enter/enter9.png" id="10_k8l15"]
+[ext_resource type="Texture2D" uid="uid://c3qo47bhssuw" path="res://art/bosses/shadowstalker/enter/enter10.png" id="11_c33bp"]
+[ext_resource type="Texture2D" uid="uid://7hvh0boaa28b" path="res://art/bosses/shadowstalker/enter/enter11.png" id="12_rpmn2"]
+[ext_resource type="Texture2D" uid="uid://d3p41x1fvngjn" path="res://art/bosses/shadowstalker/enter/enter12.png" id="13_53f27"]
+[ext_resource type="Texture2D" uid="uid://d4jcwqb4uoqeg" path="res://art/bosses/shadowstalker/enter/enter13.png" id="14_cd5ft"]
+[ext_resource type="Texture2D" uid="uid://c8j2ovgltko2x" path="res://art/bosses/shadowstalker/enter/enter14.png" id="15_7c3qb"]
+[ext_resource type="Texture2D" uid="uid://d1gfqiw5iql67" path="res://art/bosses/shadowstalker/enter/enter15.png" id="16_2kysg"]
+[ext_resource type="Texture2D" uid="uid://bsw154x7agpkh" path="res://art/bosses/shadowstalker/enter/enter16.png" id="17_f6es8"]
+[ext_resource type="Texture2D" uid="uid://61518v2q8rl1" path="res://art/bosses/shadowstalker/enter/enter17.png" id="18_k6hyh"]
+[ext_resource type="Texture2D" uid="uid://dsgpugirvwf11" path="res://art/bosses/shadowstalker/enter/enter18.png" id="19_2srqy"]
+[ext_resource type="Texture2D" uid="uid://c4ouqh5ob1bpe" path="res://art/bosses/shadowstalker/idle/idle1.png" id="20_lefty"]
+[ext_resource type="Texture2D" uid="uid://dxvpyam4bj2ds" path="res://art/bosses/shadowstalker/idle/idle2.png" id="21_4f7w4"]
+[ext_resource type="Texture2D" uid="uid://ceu2pmxfc5wta" path="res://art/bosses/shadowstalker/idle/idle3.png" id="22_vn6kn"]
+[ext_resource type="Texture2D" uid="uid://cl4kf6fkvrnb5" path="res://art/bosses/shadowstalker/idle/idle4.png" id="23_mck68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhv3k"]
+size = Vector2(28, 32)
+
+[sub_resource type="Animation" id="Animation_urayj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_r43lc"]
+resource_name = "enter"
+length = 3.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [ExtResource("2_2mfeg"), ExtResource("3_ff0f8"), ExtResource("4_kn31n"), ExtResource("5_c6pql"), ExtResource("6_q5btq"), ExtResource("7_56w7m"), ExtResource("8_k7tls"), ExtResource("9_bn3nc"), ExtResource("10_k8l15"), ExtResource("11_c33bp"), ExtResource("12_rpmn2"), ExtResource("13_53f27"), ExtResource("14_cd5ft"), ExtResource("15_7c3qb"), ExtResource("16_2kysg"), ExtResource("17_f6es8"), ExtResource("18_k6hyh"), ExtResource("19_2srqy"), ExtResource("1_wiqcw")]
+}
+
+[sub_resource type="Animation" id="Animation_lgnwa"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("20_lefty"), ExtResource("21_4f7w4"), ExtResource("22_vn6kn"), ExtResource("23_mck68")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7k7g"]
+_data = {
+"RESET": SubResource("Animation_urayj"),
+"enter": SubResource("Animation_r43lc"),
+"idle": SubResource("Animation_lgnwa")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cyk3j"]
+animation = &"enter"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj20b"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vavbv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xc6b"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hvut3"]
+states/Start/position = Vector2(202, 100)
+states/enter/node = SubResource("AnimationNodeAnimation_cyk3j")
+states/enter/position = Vector2(341, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_rj20b")
+states/idle/position = Vector2(474, 100)
+transitions = ["Start", "enter", SubResource("AnimationNodeStateMachineTransition_vavbv"), "enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
+
+[node name="Shadowstalker" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jhv3k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t7k7g")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t7k7g")
+}
+tree_root = SubResource("AnimationNodeStateMachine_hvut3")
+anim_player = NodePath("../AnimationPlayer")

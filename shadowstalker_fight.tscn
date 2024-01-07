@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://33i6q8626ugq"]
+[gd_scene load_steps=6 format=3 uid="uid://33i6q8626ugq"]
 
 [ext_resource type="Texture2D" uid="uid://cm1noqv62dyvb" path="res://art/bosses/shadowstalker/arena/tilemap.png" id="1_1u4ej"]
+[ext_resource type="PackedScene" uid="uid://lljogc8qagw3" path="res://shadowstalker.tscn" id="2_4j4qi"]
 [ext_resource type="PackedScene" uid="uid://iomxsyik6fev" path="res://player.tscn" id="2_8j2o1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_87p6j"]
@@ -55,6 +56,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_87p6j")
 
 [node name="Shadowstalker Fight" type="Node2D"]
+
+[node name="Shadowstalker" parent="." instance=ExtResource("2_4j4qi")]
+position = Vector2(111, 16)
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Player" parent="." instance=ExtResource("2_8j2o1")]
 position = Vector2(20, 1)

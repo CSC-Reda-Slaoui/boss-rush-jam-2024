@@ -30,6 +30,7 @@ light_mask = 2
 occluder = SubResource("OccluderPolygon2D_s3xng")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -30)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
@@ -98,6 +99,8 @@ stretch_mode = 2
 shape = SubResource("RectangleShape2D_pcrfn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 512
+visibility_layer = 512
 texture = ExtResource("6_i1kqo")
 
 [node name="Sword" type="Area2D" parent="."]
