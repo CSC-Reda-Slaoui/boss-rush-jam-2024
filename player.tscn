@@ -1,18 +1,118 @@
-[gd_scene load_steps=4 format=3 uid="uid://iomxsyik6fev"]
+[gd_scene load_steps=9 format=3 uid="uid://iomxsyik6fev"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_61xva"]
-[ext_resource type="Texture2D" uid="uid://rimkl623cf4u" path="res://icon.svg" id="2_ntron"]
+[ext_resource type="Script" path="res://HBoxContainer.gd" id="2_nsra5"]
+[ext_resource type="Texture2D" uid="uid://bdiv353dkm44n" path="res://art/hud/heart_broken1.png" id="2_syy3u"]
+[ext_resource type="Texture2D" uid="uid://d140s7aurs6wu" path="res://art/hud/heart_broken2.png" id="3_h0ikm"]
+[ext_resource type="Texture2D" uid="uid://botox8tygqcr0" path="res://art/player/player.png" id="6_i1kqo"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_73bjy"]
+frames = 2
+frame_0/texture = ExtResource("2_syy3u")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("3_h0ikm")
+frame_1/duration = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcrfn"]
-size = Vector2(126, 126)
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wov2g"]
+size = Vector2(24, 11)
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_61xva")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/HUD"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 216.0
+offset_bottom = 60.0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_nsra5")
+
+[node name="1" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="2" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="3" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="4" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="5" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="6" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="7" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="8" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="9" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
+[node name="10" type="TextureRect" parent="Camera2D/HUD/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_73bjy")
+stretch_mode = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_pcrfn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ntron")
+texture = ExtResource("6_i1kqo")
+
+[node name="Sword" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(20, 0.5)
+shape = SubResource("RectangleShape2D_wov2g")
+
+[node name="ColorRect" type="ColorRect" parent="Sword"]
+offset_left = 8.0
+offset_top = -5.0
+offset_right = 32.0
+offset_bottom = 7.0
+
+[node name="VisibilityTimer" type="Timer" parent="Sword"]
+wait_time = 0.25
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="Sword"]
+wait_time = 0.5
+
+[connection signal="timeout" from="Sword/VisibilityTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sword/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -3,22 +3,26 @@ extends CharacterBody2D
 # Abilities
 @export var has_dash : bool = false
 @export var max_jump : int = 1
+@export var health : int =  4
 
-@export var speed : float = 300.0
+@export var speed : float = 100.0
 @export var acceleration : float = 0.25
 @export var friction : float = 0.25
-@export var jump_velocity : float = -300.0
+@export var jump_velocity : float = -100.0
 @export var jump_height : float = 0.3
 @export var dash_speed : float = 2400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var gravity : float = 400.0 
 
 var jump_timer : float = 0.0
 var dash_timer : float = 0.0
 var jump_count : int = 0
 
+var can_attack : bool = true
+
 func _physics_process(delta):
+	get_node("Camera2D/HUD/HBoxContainer").update_health(health)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -44,6 +48,25 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 	
+	if direction > 0:
+		get_node("Sprite2D").flip_h = false
+		get_node("Sword").rotation = 0
+	elif direction < 0:
+		get_node("Sprite2D").flip_h = true
+		get_node("Sword").rotation = PI
+	
+	if Input.is_action_pressed("down"):
+		get_node("Sword").rotation = PI / 2
+	
+	if Input.is_action_pressed("up"):
+		get_node("Sword").rotation = 3 * PI / 2
+
+	if Input.is_action_just_pressed("attack") and can_attack:
+		can_attack = false
+		get_node("Sword").visible = true
+		get_node("Sword/VisibilityTimer").start()
+		get_node("Sword/CooldownTimer").start()
+	
 	if Input.is_action_just_pressed("dash") and dash_timer == 0.0 and has_dash:
 		velocity.x = dash_speed * direction
 		dash_timer = 1
@@ -52,3 +75,9 @@ func _physics_process(delta):
 		dash_timer = clamp(dash_timer, 0.0, 1.0)
 	
 	move_and_slide()
+
+func _on_timer_timeout():
+	get_node("Sword").visible = false
+
+func _on_cooldown_timer_timeout():
+	can_attack = true
