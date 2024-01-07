@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://iomxsyik6fev"]
+[gd_scene load_steps=10 format=3 uid="uid://iomxsyik6fev"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_61xva"]
 [ext_resource type="Script" path="res://HBoxContainer.gd" id="2_nsra5"]
 [ext_resource type="Texture2D" uid="uid://bdiv353dkm44n" path="res://art/hud/heart_broken1.png" id="2_syy3u"]
 [ext_resource type="Texture2D" uid="uid://d140s7aurs6wu" path="res://art/hud/heart_broken2.png" id="3_h0ikm"]
 [ext_resource type="Texture2D" uid="uid://botox8tygqcr0" path="res://art/player/player.png" id="6_i1kqo"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s3xng"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_73bjy"]
 frames = 2
@@ -20,8 +23,11 @@ size = Vector2(16, 16)
 size = Vector2(24, 11)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_61xva")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+occluder = SubResource("OccluderPolygon2D_s3xng")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

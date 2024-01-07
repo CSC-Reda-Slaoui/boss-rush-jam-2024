@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var max_jump : int = 1
 @export var health : int =  4
 
-@export var speed : float = 100.0
+@export var speed : float = 130.0
 @export var acceleration : float = 0.25
 @export var friction : float = 0.25
 @export var jump_velocity : float = -100.0
