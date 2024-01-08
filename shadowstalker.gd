@@ -26,12 +26,12 @@ var should_start_dialogue = false
 var health = 200
 var died = false
 
-var num_tendrils = 15
-var arena_width = 496
+var arena_width = 500
 
 var tendrils_parent = Node2D.new()
 
 func _ready():
+	randomize()
 	add_child(tendrils_parent)
 
 func take_damage():
@@ -41,16 +41,16 @@ func take_damage():
 	health -= 10
 
 var b = 0
-var offset = 165
+var offset = 165 + randi_range(0, 20)
 func tendril_attack():
+	var num_tendrils = randi_range(12, 16)
 	var distance_between_tendrils = arena_width / (num_tendrils + 1)
 	for i in range(num_tendrils):
-		var t = tendril.instantiate() 
+		var t = tendril.instantiate()
 		tendrils_parent.add_child(t)
 		
 		t.position.x = distance_between_tendrils * (i + 1) - offset
 		t.position.y = -150
-
 
 func _physics_process(delta):
 	if abs(player.position.x - position.x) < 50:
@@ -80,7 +80,10 @@ func _physics_process(delta):
 	if health <= 0 and not died:
 		died = true
 		state_machine.travel("death")
-	
-	if is_fighting and b < 1:
-		tendril_attack()
-		b += 1
+
+func _on_attack_timer_timeout():
+	if is_fighting and not died:
+		var attack = randi_range(1, 1)
+		
+		if attack == 1:
+			tendril_attack()

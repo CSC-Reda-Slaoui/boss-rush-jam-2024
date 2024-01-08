@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c411ll4jrrdos"]
+[gd_scene load_steps=3 format=3 uid="uid://c411ll4jrrdos"]
+
+[ext_resource type="Script" path="res://tendril.gd" id="1_4tptr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arkca"]
 size = Vector2(16, 100)
 
 [node name="Tendril" type="Area2D"]
+script = ExtResource("1_4tptr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 16.0
@@ -13,3 +16,12 @@ color = Color(0, 0, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 50)
 shape = SubResource("RectangleShape2D_arkca")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

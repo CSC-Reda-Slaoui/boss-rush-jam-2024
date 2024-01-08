@@ -19,6 +19,12 @@ var jump_count : int = 0
 var can_move : bool = true
 var can_attack : bool = true
 
+func take_damage():
+	health -= 1
+	if health == 0:
+		print("ded")
+		get_tree().reload_current_scene()
+
 func _physics_process(delta):
 	get_node("Camera2D/HUD/HBoxContainer").update_health(health)
 	

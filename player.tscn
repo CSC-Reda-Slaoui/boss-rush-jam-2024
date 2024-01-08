@@ -23,7 +23,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wov2g"]
 size = Vector2(24, 11)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_61xva")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
