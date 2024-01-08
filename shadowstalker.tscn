@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://lljogc8qagw3"]
+[gd_scene load_steps=51 format=3 uid="uid://lljogc8qagw3"]
 
 [ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
 [ext_resource type="Script" path="res://shadowstalker.gd" id="1_yid1n"]
 [ext_resource type="Texture2D" uid="uid://b5xqmngs6d63r" path="res://art/bosses/shadowstalker/enter/enter1.png" id="2_2mfeg"]
+[ext_resource type="PackedScene" uid="uid://c411ll4jrrdos" path="res://tendril.tscn" id="2_cgxk3"]
 [ext_resource type="Texture2D" uid="uid://ceulkmjgnwkss" path="res://art/bosses/shadowstalker/enter/enter2.png" id="3_ff0f8"]
 [ext_resource type="Texture2D" uid="uid://b3t2564e24ycu" path="res://art/bosses/shadowstalker/enter/enter3.png" id="4_kn31n"]
 [ext_resource type="Texture2D" uid="uid://b36nolfkvnw54" path="res://art/bosses/shadowstalker/enter/enter4.png" id="5_c6pql"]
@@ -24,7 +25,19 @@
 [ext_resource type="Texture2D" uid="uid://dxvpyam4bj2ds" path="res://art/bosses/shadowstalker/idle/idle2.png" id="21_4f7w4"]
 [ext_resource type="Texture2D" uid="uid://ceu2pmxfc5wta" path="res://art/bosses/shadowstalker/idle/idle3.png" id="22_vn6kn"]
 [ext_resource type="Texture2D" uid="uid://cl4kf6fkvrnb5" path="res://art/bosses/shadowstalker/idle/idle4.png" id="23_mck68"]
+[ext_resource type="Texture2D" uid="uid://ceyjjubwxw55n" path="res://art/bosses/shadowstalker/death/death1.png" id="25_7gh6k"]
 [ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="25_slfys"]
+[ext_resource type="Texture2D" uid="uid://po0asyt2e0rp" path="res://art/bosses/shadowstalker/death/death2.png" id="26_aqg7f"]
+[ext_resource type="Texture2D" uid="uid://cikrvnrjsdk3p" path="res://art/bosses/shadowstalker/death/death3.png" id="27_q8a12"]
+[ext_resource type="Texture2D" uid="uid://dqwlsoxk7dgx" path="res://art/bosses/shadowstalker/death/death4.png" id="28_0uci0"]
+[ext_resource type="Texture2D" uid="uid://c60lgj8w2e017" path="res://art/bosses/shadowstalker/death/death5.png" id="29_5t4cl"]
+[ext_resource type="Texture2D" uid="uid://bv2ch6bu32ora" path="res://art/bosses/shadowstalker/death/death6.png" id="30_iwllb"]
+[ext_resource type="Texture2D" uid="uid://cxdjocdowpohs" path="res://art/bosses/shadowstalker/death/death7.png" id="31_p3xo5"]
+[ext_resource type="Texture2D" uid="uid://cjxx3l1l63c5m" path="res://art/bosses/shadowstalker/death/death8.png" id="32_i251n"]
+[ext_resource type="Texture2D" uid="uid://b1pk2xbiwqu6i" path="res://art/bosses/shadowstalker/death/death9.png" id="33_8216a"]
+[ext_resource type="Texture2D" uid="uid://bp0nixapkxd35" path="res://art/bosses/shadowstalker/death/death10.png" id="34_1w8m5"]
+[ext_resource type="Texture2D" uid="uid://hppsjeyikixx" path="res://art/bosses/shadowstalker/death/death11.png" id="35_118oh"]
+[ext_resource type="Texture2D" uid="uid://d0e8po14ty30r" path="res://art/bosses/shadowstalker/death/death13.png" id="36_etuyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhv3k"]
 size = Vector2(28, 32)
@@ -42,6 +55,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_scgmg"]
+resource_name = "death"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("25_7gh6k"), ExtResource("26_aqg7f"), ExtResource("27_q8a12"), ExtResource("28_0uci0"), ExtResource("29_5t4cl"), ExtResource("30_iwllb"), ExtResource("31_p3xo5"), ExtResource("32_i251n"), ExtResource("33_8216a"), ExtResource("34_1w8m5"), ExtResource("35_118oh"), ExtResource("36_etuyl"), null]
 }
 
 [sub_resource type="Animation" id="Animation_r43lc"]
@@ -80,9 +109,13 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t7k7g"]
 _data = {
 "RESET": SubResource("Animation_urayj"),
+"death": SubResource("Animation_scgmg"),
 "enter": SubResource("Animation_r43lc"),
 "idle": SubResource("Animation_lgnwa")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjdiq"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cyk3j"]
 animation = &"enter"
@@ -94,16 +127,26 @@ animation = &"idle"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nuhp7"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hvut3"]
 states/Start/position = Vector2(202, 100)
+states/death/node = SubResource("AnimationNodeAnimation_sjdiq")
+states/death/position = Vector2(729, 100)
 states/enter/node = SubResource("AnimationNodeAnimation_cyk3j")
 states/enter/position = Vector2(341, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_rj20b")
 states/idle/position = Vector2(474, 100)
-transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
+transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b"), "death", "End", SubResource("AnimationNodeStateMachineTransition_nuhp7")]
+graph_offset = Vector2(293.488, 0)
 
-[node name="Shadowstalker" type="CharacterBody2D"]
+[node name="Shadowstalker" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_yid1n")
+tendril = ExtResource("2_cgxk3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -123,6 +166,7 @@ tree_root = SubResource("AnimationNodeStateMachine_hvut3")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 2
@@ -138,13 +182,18 @@ grow_vertical = 0
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
+offset_left = 112.0
 offset_top = -96.0
 offset_right = 1120.0
 offset_bottom = -24.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("25_slfys")
 theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 552.0
+offset_right = 96.0
+offset_bottom = 624.0

@@ -8,16 +8,15 @@ extends CharacterBody2D
 @export var speed : float = 130.0
 @export var acceleration : float = 0.25
 @export var friction : float = 0.25
-@export var jump_velocity : float = -100.0
-@export var jump_height : float = 0.3
+@export var jump_velocity : float = -160.0
 @export var dash_speed : float = 2400.0
 
 @export var gravity : float = 400.0 
 
-var jump_timer : float = 0.0
 var dash_timer : float = 0.0
 var jump_count : int = 0
 
+var can_move : bool = true
 var can_attack : bool = true
 
 func _physics_process(delta):
@@ -31,18 +30,11 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 	
-	if Input.is_action_just_pressed("jump") and jump_count < max_jump:
+	if Input.is_action_just_pressed("jump") and jump_count < max_jump and can_move:
 		velocity.y = jump_velocity
 		jump_count += 1
 	
-	if Input.is_action_pressed("jump") and jump_timer < 0.3:
-		velocity.y = (jump_velocity - abs(velocity.x / 3))
-		jump_timer += delta
-	
-	if not Input.is_action_pressed("jump") and jump_count < max_jump:
-		jump_timer = 0.0
-	
-	var direction = Input.get_axis("left", "right")
+	var direction = Input.get_axis("left", "right") if can_move else 0
 	if direction:
 		velocity.x = lerp(velocity.x, float(direction * speed), acceleration)
 	else:
@@ -63,11 +55,11 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
-		get_node("Sword").visible = true
+		get_node("Sword").monitoring = true
 		get_node("Sword/VisibilityTimer").start()
 		get_node("Sword/CooldownTimer").start()
 	
-	if Input.is_action_just_pressed("dash") and dash_timer == 0.0 and has_dash:
+	if Input.is_action_just_pressed("dash") and dash_timer == 0.0 and has_dash and can_move:
 		velocity.x = dash_speed * direction
 		dash_timer = 1
 	else:
@@ -77,7 +69,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_timer_timeout():
-	get_node("Sword").visible = false
+	get_node("Sword").monitoring = false
 
 func _on_cooldown_timer_timeout():
 	can_attack = true
