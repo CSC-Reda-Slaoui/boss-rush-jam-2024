@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @export var speed : float = 130.0
 @export var acceleration : float = 0.25
-@export var friction : float = 0.25
+@export var friction : float = 0.5
 @export var jump_velocity : float = -160.0
 @export var dash_speed : float = 2400.0
 
@@ -18,14 +18,20 @@ var jump_count : int = 0
 
 var can_move : bool = true
 var can_attack : bool = true
+var dead : bool = false
 
 func take_damage():
 	health -= 1
 	if health == 0:
-		print("ded")
-		get_tree().reload_current_scene()
+		$AnimatedSprite2D.play("death")
+		dead = true
 
 func _physics_process(delta):
+	if not can_attack or dead:
+		can_move = false
+	else:
+		can_move = true
+	
 	get_node("Camera2D/HUD/HBoxContainer").update_health(health)
 	
 	# Add the gravity.
@@ -42,15 +48,27 @@ func _physics_process(delta):
 	
 	var direction = Input.get_axis("left", "right") if can_move else 0
 	if direction:
+		$AnimatedSprite2D.play("run")
 		velocity.x = lerp(velocity.x, float(direction * speed), acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
+		#if abs(velocity.x) > 0.00001:
+			#$AnimatedSprite2D.play("stop")
+		if can_attack and not dead:
+			$AnimatedSprite2D.play("idle")
+	
+	if velocity.y < 0:
+		$AnimatedSprite2D.play("jump")
+	elif velocity.y != 0 and abs(velocity.y) < 0.1:
+		$AnimatedSprite2D.play("hang")
+	elif velocity.y > 0:
+		$AnimatedSprite2D.play("fall")
 	
 	if direction > 0:
-		get_node("Sprite2D").flip_h = false
+		get_node("AnimatedSprite2D").flip_h = false
 		get_node("Sword").rotation = 0
 	elif direction < 0:
-		get_node("Sprite2D").flip_h = true
+		get_node("AnimatedSprite2D").flip_h = true
 		get_node("Sword").rotation = PI
 	
 	if Input.is_action_pressed("down"):
@@ -61,7 +79,11 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
+		$AnimatedSprite2D.play("attack")
 		get_node("Sword").monitoring = true
+		if not is_on_floor():
+			velocity.y = 0
+			gravity = 0
 		get_node("Sword/VisibilityTimer").start()
 		get_node("Sword/CooldownTimer").start()
 	
@@ -76,6 +98,7 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	get_node("Sword").monitoring = false
+	gravity = 400
 
 func _on_cooldown_timer_timeout():
 	can_attack = true

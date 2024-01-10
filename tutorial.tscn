@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://iomxsyik6fev" path="res://player.tscn" id="1_5smaq"]
 [ext_resource type="Texture2D" uid="uid://c32bc720ylgbf" path="res://art/tutorial/playerindicator.png" id="3_ux81s"]
 [ext_resource type="PackedScene" uid="uid://cdpv0o7h352pm" path="res://torch.tscn" id="5_qnlpk"]
-[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="6_h54ed"]
+[ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="6_sf411"]
 [ext_resource type="PackedScene" uid="uid://d3wx1yk06f72d" path="res://exitportal.tscn" id="7_v5rr3"]
 [ext_resource type="PackedScene" uid="uid://33i6q8626ugq" path="res://shadowstalker_fight.tscn" id="8_ncx2k"]
 
@@ -85,7 +85,7 @@ offset_right = 174.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_h54ed")
+theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
 text = "USE ARROW KEYS TO MOVE
 ←|→"
@@ -100,7 +100,7 @@ offset_right = 614.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_h54ed")
+theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
 text = "PRESS Z TO JUMP"
 horizontal_alignment = 1
@@ -114,7 +114,7 @@ offset_right = 887.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_h54ed")
+theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
 text = "PRESS X TO ATTACK"
 horizontal_alignment = 1
@@ -128,7 +128,7 @@ offset_right = 1282.0
 offset_bottom = -32.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_h54ed")
+theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
 text = "NEXT STOP
 

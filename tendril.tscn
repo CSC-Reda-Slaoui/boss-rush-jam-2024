@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tendril.gd" id="1_4tptr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arkca"]
-size = Vector2(16, 100)
+size = Vector2(10, 100)
 
 [node name="Tendril" type="Area2D"]
 script = ExtResource("1_4tptr")

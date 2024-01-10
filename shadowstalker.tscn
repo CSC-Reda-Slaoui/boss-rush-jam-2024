@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://lljogc8qagw3"]
+[gd_scene load_steps=50 format=3 uid="uid://lljogc8qagw3"]
 
 [ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
 [ext_resource type="Script" path="res://shadowstalker.gd" id="1_yid1n"]
@@ -127,10 +127,6 @@ animation = &"idle"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nuhp7"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hvut3"]
 states/Start/position = Vector2(202, 100)
 states/death/node = SubResource("AnimationNodeAnimation_sjdiq")
@@ -139,7 +135,7 @@ states/enter/node = SubResource("AnimationNodeAnimation_cyk3j")
 states/enter/position = Vector2(341, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_rj20b")
 states/idle/position = Vector2(474, 100)
-transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b"), "death", "End", SubResource("AnimationNodeStateMachineTransition_nuhp7")]
+transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
 graph_offset = Vector2(293.488, 0)
 
 [node name="Shadowstalker" type="CharacterBody2D" groups=["enemies"]]
@@ -166,6 +162,7 @@ tree_root = SubResource("AnimationNodeStateMachine_hvut3")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 2
@@ -200,5 +197,17 @@ offset_bottom = 624.0
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(0, 16)
+amount = 150
+lifetime = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(250, 1)
+gravity = Vector2(0, -9.8)
+scale_amount_min = 0.5
+scale_amount_max = 1.75
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

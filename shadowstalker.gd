@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var state_machine = get_node("AnimationTree")["parameters/playback"]
 var shadowstalker_texture = preload("res://art/bosses/shadowstalker/face.png")
-
+var player_texture = preload("res://art/player/player.png")
 @export var player : Node2D
 
 @export var tendril : PackedScene
@@ -26,7 +26,7 @@ var should_start_dialogue = false
 var health = 200
 var died = false
 
-var arena_width = 500
+var arena_width = 600
 
 var tendrils_parent = Node2D.new()
 
@@ -40,10 +40,9 @@ func take_damage():
 	get_node("Sprite2D").modulate = Color.WHITE
 	health -= 10
 
-var b = 0
-var offset = 165 + randi_range(0, 20)
+var offset = 250 + randi_range(-20, 20)
 func tendril_attack():
-	var num_tendrils = randi_range(12, 16)
+	var num_tendrils = randi_range(17, 20)
 	var distance_between_tendrils = arena_width / (num_tendrils + 1)
 	for i in range(num_tendrils):
 		var t = tendril.instantiate()
@@ -51,6 +50,30 @@ func tendril_attack():
 		
 		t.position.x = distance_between_tendrils * (i + 1) - offset
 		t.position.y = -150
+
+func horizontal_attack():
+	var positions = [25, 457]
+	state_machine.travel("death")
+	await get_tree().create_timer(3).timeout
+	if position.x == 303:
+		var ind = randi_range(0, 1)
+		position.x = positions[ind]
+	elif position.x == 25:
+		position.x = 457
+	else:
+		position.x = 25
+	state_machine.travel("enter")
+	await get_tree().create_timer(4).timeout
+
+func return_to_center():
+	if position.x == 303:
+		return
+	
+	state_machine.travel("death")
+	await get_tree().create_timer(3).timeout
+	position.x = 303
+	state_machine.travel("enter")
+	await get_tree().create_timer(4).timeout
 
 func _physics_process(delta):
 	if abs(player.position.x - position.x) < 50:
@@ -63,12 +86,14 @@ func _physics_process(delta):
 			get_node("CanvasLayer/TextureRect").texture = shadowstalker_texture 
 			get_node("CanvasLayer/Label").text = "Shadowstalker: " + dialogue[current_dialogue]
 		else:
+			get_node("CanvasLayer/TextureRect").texture = player_texture
 			get_node("CanvasLayer/Label").text = "You: " + dialogue[current_dialogue]
 		if Input.is_action_just_pressed("dialogue"):
 			current_dialogue += 1
 		if current_dialogue == 2 and not entered:
 			state_machine.travel("enter")
 			entered = true
+			$CPUParticles2D2.visible = true
 		if current_dialogue == len(dialogue)  :
 			finished_dialogue = true
 	
@@ -79,11 +104,19 @@ func _physics_process(delta):
 	
 	if health <= 0 and not died:
 		died = true
-		state_machine.travel("death")
+		death()
+
+func death():
+	
+	state_machine.travel("death")
 
 func _on_attack_timer_timeout():
 	if is_fighting and not died:
-		var attack = randi_range(1, 1)
+		var attack = randi_range(1, 4)
 		
-		if attack == 1:
+		if attack <= 3:
 			tendril_attack()
+		if attack == 4:
+			horizontal_attack()
+		if attack == 5:
+			return_to_center()

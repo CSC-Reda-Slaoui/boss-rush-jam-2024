@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://efvh1pyaclgs"]
 
-[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="1_tsguu"]
+[ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="1_g7q4t"]
 
 [node name="EPILOGUE" type="Node2D"]
 
@@ -26,7 +26,7 @@ offset_right = 126.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_tsguu")
+theme_override_fonts/font = ExtResource("1_g7q4t")
 theme_override_font_sizes/font_size = 64
 text = "EPILOGUE"
 horizontal_alignment = 1
