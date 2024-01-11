@@ -5,13 +5,14 @@ extends Node2D
 var move = false
 
 func _ready():
-	set_physics_process(false)
+	$Area2D.monitoring = false
 	$StartTimer.start()
 
 func _on_start_timer_timeout():
 	$Area2D.monitoring = true
 
 func _on_area_2d_body_entered(body):
+	print("eaeae")
 	if body.is_in_group("player"):
 		body.take_damage()
 

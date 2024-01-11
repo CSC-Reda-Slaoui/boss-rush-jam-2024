@@ -4,7 +4,7 @@ extends CharacterBody2D
 var shadowstalker_texture = preload("res://art/bosses/shadowstalker/face.png")
 var player_texture = preload("res://art/player/player.png")
 @export var player : Node2D
-
+@export var door : Node2D
 @export var tendril : PackedScene
 
 var dialogue = [
@@ -28,6 +28,8 @@ var died = false
 
 var arena_width = 600
 
+var b = 0
+
 var tendrils_parent = Node2D.new()
 
 func _ready():
@@ -46,10 +48,10 @@ func tendril_attack():
 	var distance_between_tendrils = arena_width / (num_tendrils + 1)
 	for i in range(num_tendrils):
 		var t = tendril.instantiate()
-		tendrils_parent.add_child(t)
 		
 		t.position.x = distance_between_tendrils * (i + 1) - offset
 		t.position.y = -70
+		add_child(t)
 
 func horizontal_attack():
 	var positions = [25, 457]
@@ -76,10 +78,13 @@ func return_to_center():
 	await get_tree().create_timer(4).timeout
 
 func _physics_process(delta):
-	if abs(player.position.x - position.x) < 50:
+	if abs(player.position.x - position.x) < 50 and not finished_dialogue:
 		should_start_dialogue = true
 		player.can_move = false
-		player.can_attack = false
+		player.position.y = 184
+		player.set_physics_process(false)
+		door.position.y = 176
+		# player.can_attack = false
 	
 	if not finished_dialogue and should_start_dialogue:
 		get_node("CanvasLayer").visible = true
@@ -96,13 +101,14 @@ func _physics_process(delta):
 			state_machine.travel("enter")
 			entered = true
 			$CPUParticles2D2.visible = true
-		if current_dialogue == len(dialogue)  :
+		if current_dialogue == len(dialogue):
 			finished_dialogue = true
 	
 	if finished_dialogue:
 		get_node("CanvasLayer").visible = false
 		player.can_move = true
-		player.can_attack = true
+		#player.can_attack = true
+		player.set_physics_process(true)
 		is_fighting = true
 	
 	if health <= 0 and not died:
@@ -114,7 +120,7 @@ func death():
 
 func _on_attack_timer_timeout():
 	if is_fighting and not died:
-		var attack = randi_range(1, 4)
+		var attack = randi_range(1, 5)
 		
 		if attack <= 3:
 			tendril_attack()

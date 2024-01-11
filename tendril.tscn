@@ -1,82 +1,91 @@
-[gd_scene load_steps=19 format=3 uid="uid://c411ll4jrrdos"]
+[gd_scene load_steps=21 format=3 uid="uid://c411ll4jrrdos"]
 
 [ext_resource type="Script" path="res://tendril.gd" id="1_4tptr"]
-[ext_resource type="Texture2D" uid="uid://hfo8y3q1jfga" path="res://art/bosses/shadowstalker/tendrils/tendrils1.png" id="2_4no7m"]
-[ext_resource type="Texture2D" uid="uid://e3av2pgusugu" path="res://art/bosses/shadowstalker/tendrils/tendrils2.png" id="3_hape6"]
-[ext_resource type="Texture2D" uid="uid://dx7uys2eunb5d" path="res://art/bosses/shadowstalker/tendrils/tendrils3.png" id="4_6mf3k"]
-[ext_resource type="Texture2D" uid="uid://bt5atnitg1nxj" path="res://art/bosses/shadowstalker/tendrils/tendrils4.png" id="5_6nwct"]
-[ext_resource type="Texture2D" uid="uid://cpd3vrjp6l3uv" path="res://art/bosses/shadowstalker/tendrils/tendrils5.png" id="6_gy17f"]
-[ext_resource type="Texture2D" uid="uid://lkyn0dv0p43r" path="res://art/bosses/shadowstalker/tendrils/tendrils6.png" id="7_2yvjy"]
-[ext_resource type="Texture2D" uid="uid://df0c3wxymrt4x" path="res://art/bosses/shadowstalker/tendrils/tendrils7.png" id="8_8d3m8"]
-[ext_resource type="Texture2D" uid="uid://boam25ltmbo7p" path="res://art/bosses/shadowstalker/tendrils/tendrils8.png" id="9_t4kyr"]
-[ext_resource type="Texture2D" uid="uid://dhef1uouqsydo" path="res://art/bosses/shadowstalker/tendrils/tendrils9.png" id="10_pdajg"]
-[ext_resource type="Texture2D" uid="uid://bvglsiusskeuh" path="res://art/bosses/shadowstalker/tendrils/tendrils10.png" id="11_gao5u"]
-[ext_resource type="Texture2D" uid="uid://dhte6hq60gm5n" path="res://art/bosses/shadowstalker/tendrils/tendrils11.png" id="12_sq3gv"]
-[ext_resource type="Texture2D" uid="uid://uimvdl7rvv06" path="res://art/bosses/shadowstalker/tendrils/tendrils12.png" id="13_nwjta"]
-[ext_resource type="Texture2D" uid="uid://he32pgikmc5q" path="res://art/bosses/shadowstalker/tendrils/tendrils13.png" id="14_ep0sj"]
-[ext_resource type="Texture2D" uid="uid://dhr61kmmbpjmt" path="res://art/bosses/shadowstalker/tendrils/tendrils14.png" id="15_kdclo"]
-[ext_resource type="Texture2D" uid="uid://xxemq8gi8kn8" path="res://art/bosses/shadowstalker/tendrils/tendrils15.png" id="16_ehquh"]
+[ext_resource type="Texture2D" uid="uid://hfo8y3q1jfga" path="res://art/bosses/shadowstalker/tendrils/tendrils1.png" id="2_alhpk"]
+[ext_resource type="Texture2D" uid="uid://e3av2pgusugu" path="res://art/bosses/shadowstalker/tendrils/tendrils2.png" id="3_t8b0b"]
+[ext_resource type="Texture2D" uid="uid://dx7uys2eunb5d" path="res://art/bosses/shadowstalker/tendrils/tendrils3.png" id="4_gc0kj"]
+[ext_resource type="Texture2D" uid="uid://bt5atnitg1nxj" path="res://art/bosses/shadowstalker/tendrils/tendrils4.png" id="5_xl82e"]
+[ext_resource type="Texture2D" uid="uid://cpd3vrjp6l3uv" path="res://art/bosses/shadowstalker/tendrils/tendrils5.png" id="6_ewor5"]
+[ext_resource type="Texture2D" uid="uid://lkyn0dv0p43r" path="res://art/bosses/shadowstalker/tendrils/tendrils6.png" id="7_eqcq0"]
+[ext_resource type="Texture2D" uid="uid://df0c3wxymrt4x" path="res://art/bosses/shadowstalker/tendrils/tendrils7.png" id="8_0tgcj"]
+[ext_resource type="Texture2D" uid="uid://boam25ltmbo7p" path="res://art/bosses/shadowstalker/tendrils/tendrils8.png" id="9_bwn2k"]
+[ext_resource type="Texture2D" uid="uid://dhef1uouqsydo" path="res://art/bosses/shadowstalker/tendrils/tendrils9.png" id="10_knulp"]
+[ext_resource type="Texture2D" uid="uid://bvglsiusskeuh" path="res://art/bosses/shadowstalker/tendrils/tendrils10.png" id="11_gr7j5"]
+[ext_resource type="Texture2D" uid="uid://dhte6hq60gm5n" path="res://art/bosses/shadowstalker/tendrils/tendrils11.png" id="12_4rqyk"]
+[ext_resource type="Texture2D" uid="uid://uimvdl7rvv06" path="res://art/bosses/shadowstalker/tendrils/tendrils12.png" id="13_ha7ej"]
+[ext_resource type="Texture2D" uid="uid://he32pgikmc5q" path="res://art/bosses/shadowstalker/tendrils/tendrils13.png" id="14_s7eec"]
+[ext_resource type="Texture2D" uid="uid://dhr61kmmbpjmt" path="res://art/bosses/shadowstalker/tendrils/tendrils14.png" id="15_aqf10"]
+[ext_resource type="Texture2D" uid="uid://xxemq8gi8kn8" path="res://art/bosses/shadowstalker/tendrils/tendrils15.png" id="16_s6q5v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vycjy"]
 animations = [{
 "frames": [{
 "duration": 3.0,
-"texture": ExtResource("2_4no7m")
+"texture": ExtResource("2_alhpk")
 }, {
 "duration": 3.0,
-"texture": ExtResource("3_hape6")
+"texture": ExtResource("3_t8b0b")
 }, {
 "duration": 3.0,
-"texture": ExtResource("4_6mf3k")
-}, {
-"duration": 3.0,
-"texture": ExtResource("5_6nwct")
+"texture": ExtResource("4_gc0kj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_gy17f")
+"texture": ExtResource("5_xl82e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_2yvjy")
+"texture": ExtResource("6_ewor5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_8d3m8")
+"texture": ExtResource("7_eqcq0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_t4kyr")
+"texture": ExtResource("8_0tgcj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_pdajg")
+"texture": ExtResource("9_bwn2k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_gao5u")
+"texture": ExtResource("10_knulp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_sq3gv")
+"texture": ExtResource("11_gr7j5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_nwjta")
+"texture": ExtResource("12_4rqyk")
 }, {
-"duration": 3.0,
-"texture": ExtResource("14_ep0sj")
+"duration": 1.0,
+"texture": ExtResource("13_ha7ej")
 }, {
-"duration": 3.0,
-"texture": ExtResource("15_kdclo")
+"duration": 1.0,
+"texture": ExtResource("14_s7eec")
 }, {
-"duration": 3.0,
-"texture": ExtResource("16_ehquh")
+"duration": 1.0,
+"texture": ExtResource("15_aqf10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_s6q5v")
 }],
 "loop": false,
 "name": &"default",
-"speed": 20.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arkca"]
-size = Vector2(11, 98.5)
+size = Vector2(11, 18.5)
+
+[sub_resource type="Gradient" id="Gradient_68pvt"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_qakr7"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Tendril" type="Node2D"]
 script = ExtResource("1_4tptr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(8, 49)
 sprite_frames = SubResource("SpriteFrames_vycjy")
 autoplay = "default"
@@ -87,11 +96,27 @@ frame_progress = 1.0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8.5, 49.25)
+position = Vector2(8.5, 89.25)
 shape = SubResource("RectangleShape2D_arkca")
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.75
+autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(8, 49)
+amount = 20
+speed_scale = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 50)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 1)
+initial_velocity_min = 1.0
+initial_velocity_max = 11.1
+scale_amount_max = 2.0
+color = Color(0.752941, 0.752941, 0.752941, 1)
+color_ramp = SubResource("Gradient_68pvt")
+hue_variation_curve = SubResource("Curve_qakr7")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

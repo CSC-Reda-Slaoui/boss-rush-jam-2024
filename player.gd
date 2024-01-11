@@ -21,11 +21,17 @@ var can_attack : bool = true
 var dead : bool = false
 
 func take_damage():
+	get_node("AnimatedSprite2D").modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	get_node("AnimatedSprite2D").modulate = Color.WHITE
 	health -= 1
 	if health == 0:
 		position.y = 183.924011230469
 		$AnimatedSprite2D.play("death")
 		dead = true
+		
+		await get_tree().create_timer(2).timeout
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	if not can_attack or dead:

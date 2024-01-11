@@ -190,3 +190,11 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0ulfw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 100
+offset_left = -2983.0
+offset_top = -1619.0
+offset_right = 3446.0
+offset_bottom = 2495.0
+color = Color(0, 0, 0, 1)

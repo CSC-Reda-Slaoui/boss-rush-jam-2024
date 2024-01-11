@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b21qxbs0yixm8"]
+[gd_scene load_steps=6 format=3 uid="uid://b21qxbs0yixm8"]
 
 [ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="1_2fe3h"]
+[ext_resource type="Script" path="res://Fadeinout.gd" id="2_ypb86"]
+[ext_resource type="Script" path="res://starwars.gd" id="3_11mgt"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="3_t2oea"]
+[ext_resource type="PackedScene" uid="uid://cmd2a8oteyb8c" path="res://act_1.tscn" id="5_8kw1h"]
 
 [node name="Prologue" type="Node2D"]
 
@@ -15,6 +19,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -31,4 +36,32 @@ theme_override_font_sizes/font_size = 64
 text = "PROLOGUE"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_ypb86")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -553.0
+offset_top = -297.0
+offset_right = 559.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_t2oea")
+theme_override_font_sizes/font_size = 32
+text = "Embark on a cursed journey to escape the underworld. 
+Challenge the guardians.
+Sacrifice your soul. 
+Reclaim what was lost.
+A transformative odyssey awaits."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_11mgt")
+next_scene = ExtResource("5_8kw1h")
 metadata/_edit_use_anchors_ = true

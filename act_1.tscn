@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmd2a8oteyb8c"]
+[gd_scene load_steps=6 format=3 uid="uid://cmd2a8oteyb8c"]
 
 [ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="1_eyp2k"]
+[ext_resource type="Script" path="res://Fadeinout.gd" id="2_fm452"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="3_n3f60"]
+[ext_resource type="Script" path="res://starwars.gd" id="4_qo87l"]
+[ext_resource type="PackedScene" uid="uid://33i6q8626ugq" path="res://shadowstalker_fight.tscn" id="5_yqbp8"]
 
 [node name="ACT 1" type="Node2D"]
 
@@ -15,6 +19,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -32,4 +37,30 @@ text = "ACT I:
 DESCENT INTO DARKNESS"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_fm452")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -11.5
+offset_right = 126.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_n3f60")
+theme_override_font_sizes/font_size = 32
+text = "In the ominous Abyssal Caverns, your journey begins.
+The air is thick with shadows, and a mysterious presence awaits."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("4_qo87l")
+next_scene = ExtResource("5_yqbp8")
 metadata/_edit_use_anchors_ = true

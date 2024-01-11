@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdpv0o7h352pm" path="res://torch.tscn" id="5_qnlpk"]
 [ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="6_sf411"]
 [ext_resource type="PackedScene" uid="uid://d3wx1yk06f72d" path="res://exitportal.tscn" id="7_v5rr3"]
-[ext_resource type="PackedScene" uid="uid://33i6q8626ugq" path="res://shadowstalker_fight.tscn" id="8_ncx2k"]
+[ext_resource type="PackedScene" uid="uid://b21qxbs0yixm8" path="res://prologue.tscn" id="8_3ptr7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fye3n"]
 texture = ExtResource("1_0e8tl")
@@ -130,13 +130,11 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
-text = "NEXT STOP
-
-ABYSSAL CAVERNS"
+text = "USE THE PORTALS TO ADVANCE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ExitPortal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_v5rr3")]
 position = Vector2(1261, -23)
-next_scene = ExtResource("8_ncx2k")
+next_scene = ExtResource("8_3ptr7")
 player = NodePath("../Player")

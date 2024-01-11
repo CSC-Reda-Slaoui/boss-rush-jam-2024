@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7fdl16rxqtqt"]
+
+[ext_resource type="Texture2D" uid="uid://dju6ly7rebaup" path="res://art/bosses/shadowstalker/arena/door.png" id="1_u0pyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh75g"]
+size = Vector2(10.5, 32)
+
+[node name="Door" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u0pyx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.75, 0)
+shape = SubResource("RectangleShape2D_kh75g")
