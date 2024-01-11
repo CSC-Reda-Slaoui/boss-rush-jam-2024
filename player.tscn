@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://iomxsyik6fev"]
+[gd_scene load_steps=41 format=3 uid="uid://iomxsyik6fev"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_61xva"]
 [ext_resource type="Script" path="res://HBoxContainer.gd" id="2_nsra5"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://clkince33lgha" path="res://art/player/jump/jump3.png" id="10_f2gym"]
 [ext_resource type="Texture2D" uid="uid://drg6phhetkka7" path="res://art/player/death/death1.png" id="10_oboyc"]
 [ext_resource type="Texture2D" uid="uid://b5l1jcxfpj710" path="res://art/player/run/run7.png" id="10_qnbcn"]
+[ext_resource type="Texture2D" uid="uid://vfv2j38vmo7m" path="res://art/player/crouch/crouch.png" id="10_sxd2x"]
 [ext_resource type="Texture2D" uid="uid://b1wksowdcad74" path="res://art/player/jump/jump2.png" id="11_bpyri"]
 [ext_resource type="Texture2D" uid="uid://bvmy5vopoovvi" path="res://art/player/death/death2.png" id="11_lyqo8"]
 [ext_resource type="Texture2D" uid="uid://djpel2ndma2de" path="res://art/player/run/run6.png" id="11_v0g8c"]
@@ -69,6 +70,14 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_sxd2x")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -261,10 +270,9 @@ shape = SubResource("RectangleShape2D_pcrfn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_axprr")
-animation = &"attack"
+animation = &"crouch"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.118758
+frame_progress = 0.208039
 
 [node name="Sword" type="Area2D" parent="."]
 visible = false

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bda3jxw1i3hsf"]
+
+[ext_resource type="Texture2D" uid="uid://c1x65meqr6wl8" path="res://art/bosses/shadow_projectile.png" id="1_bl5mn"]
+[ext_resource type="Script" path="res://shadow_projectile.gd" id="1_et3y4"]
+[ext_resource type="Texture2D" uid="uid://bio7t8lkgxr4e" path="res://art/light.png" id="3_gsw4b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sk6hs"]
+size = Vector2(8, 2)
+
+[node name="Shadow Projectile" type="Area2D"]
+script = ExtResource("1_et3y4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bl5mn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_sk6hs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("3_gsw4b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

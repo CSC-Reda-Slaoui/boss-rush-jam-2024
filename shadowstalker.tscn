@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://lljogc8qagw3"]
+[gd_scene load_steps=58 format=3 uid="uid://lljogc8qagw3"]
 
 [ext_resource type="Texture2D" uid="uid://dv3k02wqogq8d" path="res://art/bosses/shadowstalker/enter/enter19.png" id="1_wiqcw"]
 [ext_resource type="Script" path="res://shadowstalker.gd" id="1_yid1n"]
@@ -38,6 +38,12 @@
 [ext_resource type="Texture2D" uid="uid://bp0nixapkxd35" path="res://art/bosses/shadowstalker/death/death10.png" id="34_1w8m5"]
 [ext_resource type="Texture2D" uid="uid://hppsjeyikixx" path="res://art/bosses/shadowstalker/death/death11.png" id="35_118oh"]
 [ext_resource type="Texture2D" uid="uid://d0e8po14ty30r" path="res://art/bosses/shadowstalker/death/death13.png" id="36_etuyl"]
+[ext_resource type="Texture2D" uid="uid://dicqbfsbcop76" path="res://art/bosses/shadowstalker/side/side1.png" id="38_521f4"]
+[ext_resource type="Texture2D" uid="uid://jtaneiyxtnov" path="res://art/bosses/shadowstalker/side/side2.png" id="39_72rp4"]
+[ext_resource type="Texture2D" uid="uid://oxuw2mxoia3c" path="res://art/bosses/shadowstalker/side/side3.png" id="40_6vewq"]
+[ext_resource type="Texture2D" uid="uid://5mxxltook0ml" path="res://art/bosses/shadowstalker/side/side4.png" id="41_1pag0"]
+[ext_resource type="Texture2D" uid="uid://b0awolj5qr1uu" path="res://art/bosses/shadowstalker/side/side5.png" id="42_x21c6"]
+[ext_resource type="Texture2D" uid="uid://duaurm8yvd3qw" path="res://art/bosses/shadowstalker/side/side6.png" id="43_c0yed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhv3k"]
 size = Vector2(28, 32)
@@ -106,12 +112,29 @@ tracks/0/keys = {
 "values": [ExtResource("20_lefty"), ExtResource("21_4f7w4"), ExtResource("22_vn6kn"), ExtResource("23_mck68")]
 }
 
+[sub_resource type="Animation" id="Animation_g85g8"]
+resource_name = "side"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("38_521f4"), ExtResource("39_72rp4"), ExtResource("40_6vewq"), ExtResource("41_1pag0"), ExtResource("42_x21c6"), ExtResource("43_c0yed")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t7k7g"]
 _data = {
 "RESET": SubResource("Animation_urayj"),
 "death": SubResource("Animation_scgmg"),
 "enter": SubResource("Animation_r43lc"),
-"idle": SubResource("Animation_lgnwa")
+"idle": SubResource("Animation_lgnwa"),
+"side": SubResource("Animation_g85g8")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjdiq"]
@@ -122,6 +145,9 @@ animation = &"enter"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj20b"]
 animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yv5jj"]
+animation = &"side"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xc6b"]
 switch_mode = 2
@@ -135,6 +161,8 @@ states/enter/node = SubResource("AnimationNodeAnimation_cyk3j")
 states/enter/position = Vector2(341, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_rj20b")
 states/idle/position = Vector2(474, 100)
+states/side/node = SubResource("AnimationNodeAnimation_yv5jj")
+states/side/position = Vector2(474, 198)
 transitions = ["enter", "idle", SubResource("AnimationNodeStateMachineTransition_3xc6b")]
 graph_offset = Vector2(293.488, 0)
 
@@ -195,7 +223,7 @@ offset_right = 96.0
 offset_bottom = 624.0
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 1.3
+wait_time = 1.75
 autostart = true
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
@@ -209,5 +237,8 @@ gravity = Vector2(0, -9.8)
 scale_amount_min = 0.5
 scale_amount_max = 1.75
 color = Color(0, 0, 0, 1)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(14, -2)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

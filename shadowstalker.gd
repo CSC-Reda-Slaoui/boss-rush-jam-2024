@@ -6,6 +6,7 @@ var player_texture = preload("res://art/player/player.png")
 @export var player : Node2D
 @export var door : Node2D
 @export var tendril : PackedScene
+@export var bullet : PackedScene
 
 var dialogue = [
 	"Who dares intrude upon my domain, stumbling blindly into the abyss?",
@@ -53,6 +54,8 @@ func tendril_attack():
 		t.position.y = -70
 		add_child(t)
 
+var num_bullets = 1
+
 func horizontal_attack():
 	var positions = [25, 457]
 	state_machine.travel("death")
@@ -62,10 +65,23 @@ func horizontal_attack():
 		position.x = positions[ind]
 	elif position.x == 25:
 		position.x = 457
+		$Sprite2D.flip_h = true
 	else:
 		position.x = 25
+		$Sprite2D.flip_h = false
 	state_machine.travel("enter")
 	await get_tree().create_timer(4).timeout
+	state_machine.travel("side")
+	await get_tree().create_timer(1.4).timeout
+	
+	for i in range(num_bullets):
+		var b = bullet.instantiate()
+		if position.x == 457:
+			b.speed *= -1
+			b.get_node("Sprite2D").flip_h = true
+		add_child(b)
+		b.transform = $Muzzle.transform
+		b.position.y += randi_range(-2, 7)
 
 func return_to_center():
 	if position.x == 303:
@@ -120,11 +136,11 @@ func death():
 
 func _on_attack_timer_timeout():
 	if is_fighting and not died:
-		var attack = randi_range(1, 5)
+		var attack = randi_range(1, 10)
 		
-		if attack <= 3:
-			tendril_attack()
-		if attack == 4:
+		if attack <= 5:
 			horizontal_attack()
-		if attack == 5:
+		if attack < 9:
+			tendril_attack()
+		if attack == 10:
 			return_to_center()

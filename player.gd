@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Abilities
 @export var has_dash : bool = false
 @export var max_jump : int = 1
-@export var health : int =  4
+@export var health : int =  10
 
 @export var speed : float = 130.0
 @export var acceleration : float = 0.25
@@ -49,6 +49,18 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 	
+	if Input.is_action_pressed("down"):
+		print("dooown")
+		$AnimatedSprite2D.play("crouch")
+		$CollisionShape2D.scale = Vector2(0.5, 0.5)
+		$CollisionShape2D.position.y = 0
+		velocity.x = lerp(velocity.x, 0.0, 0.05)
+		move_and_slide()
+		return
+	else:
+		$CollisionShape2D.position.y = -2
+		$CollisionShape2D.scale = Vector2(1, 1)
+	
 	if Input.is_action_just_pressed("jump") and jump_count < max_jump and can_move:
 		velocity.y = jump_velocity
 		jump_count += 1
@@ -77,12 +89,6 @@ func _physics_process(delta):
 	elif direction < 0:
 		get_node("AnimatedSprite2D").flip_h = true
 		get_node("Sword").rotation = PI
-	
-	if Input.is_action_pressed("down"):
-		get_node("Sword").rotation = PI / 2
-	
-	if Input.is_action_pressed("up"):
-		get_node("Sword").rotation = 3 * PI / 2
 
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
