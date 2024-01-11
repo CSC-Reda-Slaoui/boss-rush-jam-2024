@@ -23,15 +23,16 @@ var dead : bool = false
 func take_damage():
 	health -= 1
 	if health == 0:
+		position.y = 183.924011230469
 		$AnimatedSprite2D.play("death")
 		dead = true
 
 func _physics_process(delta):
 	if not can_attack or dead:
 		can_move = false
-	else:
+	elif can_attack:
 		can_move = true
-	
+
 	get_node("Camera2D/HUD/HBoxContainer").update_health(health)
 	
 	# Add the gravity.

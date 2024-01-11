@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdpv0o7h352pm"]
+[gd_scene load_steps=6 format=3 uid="uid://cdpv0o7h352pm"]
 
 [ext_resource type="Texture2D" uid="uid://cc8jxo01gxl81" path="res://art/objects/torch1.png" id="1_5mh7e"]
 [ext_resource type="Texture2D" uid="uid://c72ntcp5jgykn" path="res://art/objects/torch2.png" id="2_t3cfj"]
@@ -22,9 +22,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3ak05"]
-polygon = PackedVector2Array(0, 0, -2, 0, -2, 1, 2, 1, 2, 0)
-
 [node name="Torch" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -36,8 +33,8 @@ frame_progress = 0.302559
 position = Vector2(0, -3)
 color = Color(1, 1, 0.301961, 1)
 energy = 5.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 2
 texture = ExtResource("4_auq77")
 texture_scale = 0.25
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_3ak05")

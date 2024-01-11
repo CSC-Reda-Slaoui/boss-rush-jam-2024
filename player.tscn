@@ -46,7 +46,7 @@ frame_1/texture = ExtResource("3_h0ikm")
 frame_1/duration = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcrfn"]
-size = Vector2(16, 16)
+size = Vector2(8, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_axprr"]
 animations = [{
@@ -255,15 +255,14 @@ texture = SubResource("AnimatedTexture_73bjy")
 stretch_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_pcrfn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -24)
+position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_axprr")
-animation = &"death"
+animation = &"run"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="Sword" type="Area2D" parent="."]
 visible = false
@@ -288,6 +287,7 @@ one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="Sword"]
 wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
 [connection signal="timeout" from="Sword/VisibilityTimer" to="." method="_on_timer_timeout"]

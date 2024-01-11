@@ -1,22 +1,19 @@
-extends Area2D
+extends Node2D
 
 @export var speed = 300
 
+var move = false
+
 func _ready():
 	set_physics_process(false)
-	$Timer.start()
 	$StartTimer.start()
 
-func _physics_process(delta):
-	position.y += speed * delta
-
-func _on_timer_timeout():
-	queue_free()
-
 func _on_start_timer_timeout():
-	set_physics_process(true)
+	$Area2D.monitoring = true
 
-
-func _on_body_entered(body):
+func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
 		body.take_damage()
+
+func _on_animated_sprite_2d_animation_finished():
+	queue_free()

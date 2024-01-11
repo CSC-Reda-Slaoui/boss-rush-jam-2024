@@ -49,7 +49,7 @@ func tendril_attack():
 		tendrils_parent.add_child(t)
 		
 		t.position.x = distance_between_tendrils * (i + 1) - offset
-		t.position.y = -150
+		t.position.y = -70
 
 func horizontal_attack():
 	var positions = [25, 457]
@@ -79,9 +79,11 @@ func _physics_process(delta):
 	if abs(player.position.x - position.x) < 50:
 		should_start_dialogue = true
 		player.can_move = false
+		player.can_attack = false
 	
 	if not finished_dialogue and should_start_dialogue:
 		get_node("CanvasLayer").visible = true
+		player.get_node("AnimatedSprite2D").play("idle")
 		if current_dialogue % 2 == 0:
 			get_node("CanvasLayer/TextureRect").texture = shadowstalker_texture 
 			get_node("CanvasLayer/Label").text = "Shadowstalker: " + dialogue[current_dialogue]
@@ -100,6 +102,7 @@ func _physics_process(delta):
 	if finished_dialogue:
 		get_node("CanvasLayer").visible = false
 		player.can_move = true
+		player.can_attack = true
 		is_fighting = true
 	
 	if health <= 0 and not died:
@@ -107,7 +110,6 @@ func _physics_process(delta):
 		death()
 
 func death():
-	
 	state_machine.travel("death")
 
 func _on_attack_timer_timeout():

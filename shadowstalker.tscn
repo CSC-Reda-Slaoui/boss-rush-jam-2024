@@ -195,7 +195,7 @@ offset_right = 96.0
 offset_bottom = 624.0
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 autostart = true
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]

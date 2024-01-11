@@ -1,27 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://c411ll4jrrdos"]
+[gd_scene load_steps=19 format=3 uid="uid://c411ll4jrrdos"]
 
 [ext_resource type="Script" path="res://tendril.gd" id="1_4tptr"]
+[ext_resource type="Texture2D" uid="uid://hfo8y3q1jfga" path="res://art/bosses/shadowstalker/tendrils/tendrils1.png" id="2_4no7m"]
+[ext_resource type="Texture2D" uid="uid://e3av2pgusugu" path="res://art/bosses/shadowstalker/tendrils/tendrils2.png" id="3_hape6"]
+[ext_resource type="Texture2D" uid="uid://dx7uys2eunb5d" path="res://art/bosses/shadowstalker/tendrils/tendrils3.png" id="4_6mf3k"]
+[ext_resource type="Texture2D" uid="uid://bt5atnitg1nxj" path="res://art/bosses/shadowstalker/tendrils/tendrils4.png" id="5_6nwct"]
+[ext_resource type="Texture2D" uid="uid://cpd3vrjp6l3uv" path="res://art/bosses/shadowstalker/tendrils/tendrils5.png" id="6_gy17f"]
+[ext_resource type="Texture2D" uid="uid://lkyn0dv0p43r" path="res://art/bosses/shadowstalker/tendrils/tendrils6.png" id="7_2yvjy"]
+[ext_resource type="Texture2D" uid="uid://df0c3wxymrt4x" path="res://art/bosses/shadowstalker/tendrils/tendrils7.png" id="8_8d3m8"]
+[ext_resource type="Texture2D" uid="uid://boam25ltmbo7p" path="res://art/bosses/shadowstalker/tendrils/tendrils8.png" id="9_t4kyr"]
+[ext_resource type="Texture2D" uid="uid://dhef1uouqsydo" path="res://art/bosses/shadowstalker/tendrils/tendrils9.png" id="10_pdajg"]
+[ext_resource type="Texture2D" uid="uid://bvglsiusskeuh" path="res://art/bosses/shadowstalker/tendrils/tendrils10.png" id="11_gao5u"]
+[ext_resource type="Texture2D" uid="uid://dhte6hq60gm5n" path="res://art/bosses/shadowstalker/tendrils/tendrils11.png" id="12_sq3gv"]
+[ext_resource type="Texture2D" uid="uid://uimvdl7rvv06" path="res://art/bosses/shadowstalker/tendrils/tendrils12.png" id="13_nwjta"]
+[ext_resource type="Texture2D" uid="uid://he32pgikmc5q" path="res://art/bosses/shadowstalker/tendrils/tendrils13.png" id="14_ep0sj"]
+[ext_resource type="Texture2D" uid="uid://dhr61kmmbpjmt" path="res://art/bosses/shadowstalker/tendrils/tendrils14.png" id="15_kdclo"]
+[ext_resource type="Texture2D" uid="uid://xxemq8gi8kn8" path="res://art/bosses/shadowstalker/tendrils/tendrils15.png" id="16_ehquh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vycjy"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_4no7m")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_hape6")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_6mf3k")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_6nwct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gy17f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2yvjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8d3m8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_t4kyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pdajg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gao5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sq3gv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nwjta")
+}, {
+"duration": 3.0,
+"texture": ExtResource("14_ep0sj")
+}, {
+"duration": 3.0,
+"texture": ExtResource("15_kdclo")
+}, {
+"duration": 3.0,
+"texture": ExtResource("16_ehquh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arkca"]
-size = Vector2(10, 100)
+size = Vector2(11, 98.5)
 
-[node name="Tendril" type="Area2D"]
+[node name="Tendril" type="Node2D"]
 script = ExtResource("1_4tptr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 16.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 49)
+sprite_frames = SubResource("SpriteFrames_vycjy")
+autoplay = "default"
+frame = 14
+frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 50)
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8.5, 49.25)
 shape = SubResource("RectangleShape2D_arkca")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-
 [node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
