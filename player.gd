@@ -24,7 +24,7 @@ func take_damage():
 	get_node("AnimatedSprite2D").modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	get_node("AnimatedSprite2D").modulate = Color.WHITE
-	health -= 1
+	#      health -= 1
 	if health == 0:
 		position.y = 183.924011230469
 		$AnimatedSprite2D.play("death")
@@ -50,7 +50,6 @@ func _physics_process(delta):
 		jump_count = 0
 	
 	if Input.is_action_pressed("down"):
-		print("dooown")
 		$AnimatedSprite2D.play("crouch")
 		$CollisionShape2D.scale = Vector2(0.5, 0.5)
 		$CollisionShape2D.position.y = 0

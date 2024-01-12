@@ -5,17 +5,23 @@ var shadowstalker_texture = preload("res://art/bosses/shadowstalker/face.png")
 var player_texture = preload("res://art/player/player.png")
 @export var player : Node2D
 @export var door : Node2D
+@export var exit : Node2D
 @export var tendril : PackedScene
 @export var bullet : PackedScene
 
 var dialogue = [
-	"Who dares intrude upon my domain, stumbling blindly into the abyss?",
+	"Who dares intrude upon my domain, stumbling blindly into the darkness?",
 	"I seek passage to the temple atop Wraithpeak Mountain. I must break this curse that binds me here.",
 	"Foolish wanderer, seeking escape from the chains of fate. Do you not realize that salvation comes at a price?",
 	"I'll pay any price to break this curse and return to the world above.",
-	"Very well. But know this: to pass beyond, you must relinquish what you hold most dear. Your memories shall feed the void, a necessary sacrifice for your passage.",
-	"I accept your challenge. I'll face your trial and claim what's mine.",
-	"Then let the darkness consume your past. Enter, and face the annihilation of your memories."
+	"Very well. Your memories shall feed the void, a necessary sacrifice for your passage. Challenge me, and face the annihilation of your memories.",
+	"Ikram la plus belle et gentille et hnina msikina"
+]
+
+var finish = [
+	"ENOUGH! I shall allow you passage.",
+	"What has happened? Something feels amiss. You are the first and only thing I can remember.",
+	"Memories are naught but fragments of a former self. They are of no use to you in the journey ahead. Embrace the emptiness; within it, you'll find a canvas anew."
 ]
 
 var finished_dialogue = false
@@ -24,7 +30,11 @@ var current_dialogue = 0
 var entered = false
 var should_start_dialogue = false
 
-var health = 200
+var should_start_death = false
+var current_death = 0
+var finished_death = false
+
+var health = 10
 var died = false
 
 var arena_width = 600
@@ -102,6 +112,25 @@ func _physics_process(delta):
 		door.position.y = 176
 		# player.can_attack = false
 	
+	if not finished_death and died:
+		player.can_move = false
+		player.set_physics_process(false)
+		is_fighting = false
+		get_node("CanvasLayer").visible = true
+		player.get_node("AnimatedSprite2D").play("idle")
+		if current_death % 2 == 0:
+			get_node("CanvasLayer/TextureRect").texture = shadowstalker_texture
+			get_node("CanvasLayer/Label").text = "Shadowstalker: " + finish[current_death]
+		else:
+			get_node("CanvasLayer/TextureRect").texture = player_texture
+			get_node("CanvasLayer/Label").text = "You: " + finish[current_death]
+		if Input.is_action_just_pressed("dialogue"):
+			current_death += 1
+		if current_death == len(finish):
+			finished_death = true
+			get_node("CanvasLayer").visible = false
+		return
+	
 	if not finished_dialogue and should_start_dialogue:
 		get_node("CanvasLayer").visible = true
 		player.get_node("AnimatedSprite2D").play("idle")
@@ -123,16 +152,20 @@ func _physics_process(delta):
 	if finished_dialogue:
 		get_node("CanvasLayer").visible = false
 		player.can_move = true
-		#player.can_attack = true
 		player.set_physics_process(true)
 		is_fighting = true
 	
 	if health <= 0 and not died:
 		died = true
-		death()
-
-func death():
-	state_machine.travel("death")
+		should_start_death = true
+	
+	if finished_death:
+		exit.position.y = 0
+		player.can_move = true
+		player.set_physics_process(true)
+		state_machine.travel("death")
+		await get_tree().create_timer(4).timeout
+		queue_free()
 
 func _on_attack_timer_timeout():
 	if is_fighting and not died:

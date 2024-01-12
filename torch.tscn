@@ -32,9 +32,9 @@ frame_progress = 0.302559
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -3)
 color = Color(1, 1, 0.301961, 1)
-energy = 5.0
+energy = 3.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 shadow_item_cull_mask = 2
 texture = ExtResource("4_auq77")
-texture_scale = 0.25
+texture_scale = 0.5

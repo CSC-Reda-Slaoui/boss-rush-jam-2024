@@ -87,8 +87,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_sf411")
 theme_override_font_sizes/font_size = 16
-text = "USE ARROW KEYS TO MOVE
-←|→"
+text = "USE ARROW KEYS TO MOVE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
