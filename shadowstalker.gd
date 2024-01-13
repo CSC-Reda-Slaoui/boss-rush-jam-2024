@@ -14,8 +14,7 @@ var dialogue = [
 	"I seek passage to the temple atop Wraithpeak Mountain. I must break this curse that binds me here.",
 	"Foolish wanderer, seeking escape from the chains of fate. Do you not realize that salvation comes at a price?",
 	"I'll pay any price to break this curse and return to the world above.",
-	"Very well. Your memories shall feed the void, a necessary sacrifice for your passage. Challenge me, and face the annihilation of your memories.",
-	"Ikram la plus belle et gentille et hnina msikina"
+	"Very well. Your memories shall feed the void, a necessary sacrifice for your passage. Challenge me, and face the annihilation of your memories."
 ]
 
 var finish = [
@@ -34,10 +33,10 @@ var should_start_death = false
 var current_death = 0
 var finished_death = false
 
-var health = 10
+var health = 200
 var died = false
 
-var arena_width = 600
+var arena_width = 550
 
 var b = 0
 
@@ -46,6 +45,7 @@ var tendrils_parent = Node2D.new()
 func _ready():
 	randomize()
 	add_child(tendrils_parent)
+	# Global.shadowstalker()
 
 func take_damage():
 	get_node("Sprite2D").modulate = Color.RED
@@ -55,14 +55,16 @@ func take_damage():
 
 var offset = 250 + randi_range(-20, 20)
 func tendril_attack():
-	var num_tendrils = randi_range(17, 20)
+	var num_tendrils = randi_range(12, 15)
 	var distance_between_tendrils = arena_width / (num_tendrils + 1)
 	for i in range(num_tendrils):
 		var t = tendril.instantiate()
 		
-		t.position.x = distance_between_tendrils * (i + 1) - offset
-		t.position.y = -70
-		add_child(t)
+		t.z_index = 0
+		t.scale = Vector2(1.3, 1.63)
+		t.global_position.x = 215 + distance_between_tendrils * (i + 1) - offset
+		t.global_position.y = 30
+		owner.add_child(t)
 
 var num_bullets = 1
 
@@ -89,8 +91,8 @@ func horizontal_attack():
 		if position.x == 457:
 			b.speed *= -1
 			b.get_node("Sprite2D").flip_h = true
-		add_child(b)
-		b.transform = $Muzzle.transform
+		owner.add_child(b)
+		b.global_transform = $Muzzle.global_transform
 		b.position.y += randi_range(-2, 7)
 
 func return_to_center():
@@ -145,6 +147,7 @@ func _physics_process(delta):
 		if current_dialogue == 2 and not entered:
 			state_machine.travel("enter")
 			entered = true
+			Global.shadowstalker()
 			$CPUParticles2D2.visible = true
 		if current_dialogue == len(dialogue):
 			finished_dialogue = true

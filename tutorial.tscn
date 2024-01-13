@@ -137,3 +137,10 @@ vertical_alignment = 1
 position = Vector2(1261, -23)
 next_scene = ExtResource("8_3ptr7")
 player = NodePath("../Player")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -792.0
+offset_top = -1041.0
+offset_right = 3152.0
+offset_bottom = 1341.0
+color = Color(0, 0, 0, 1)

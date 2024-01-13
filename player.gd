@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Abilities
 @export var has_dash : bool = false
 @export var max_jump : int = 1
-@export var health : int =  10
+@export var health : int =  5 
 
 @export var speed : float = 130.0
 @export var acceleration : float = 0.25
@@ -24,12 +24,15 @@ func take_damage():
 	get_node("AnimatedSprite2D").modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	get_node("AnimatedSprite2D").modulate = Color.WHITE
-	#      health -= 1
+	
+	health -= 1
+	
 	if health == 0:
 		position.y = 183.924011230469
 		$AnimatedSprite2D.play("death")
 		dead = true
 		
+		Global.stop()
 		await get_tree().create_timer(2).timeout
 		get_tree().reload_current_scene()
 
