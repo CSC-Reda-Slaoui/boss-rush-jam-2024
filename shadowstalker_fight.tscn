@@ -195,6 +195,7 @@ position = Vector2(226, 40)
 energy = 2.0
 texture = ExtResource("8_scyc4")
 
-[node name="ExitPortal" parent="." instance=ExtResource("9_1chjh")]
+[node name="ExitPortal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_1chjh")]
 position = Vector2(751, 172)
 next_scene = ExtResource("10_s7avq")
+player = NodePath("../Player")

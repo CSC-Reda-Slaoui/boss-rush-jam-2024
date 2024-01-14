@@ -21,6 +21,7 @@ var can_attack : bool = true
 var dead : bool = false
 
 func take_damage():
+	get_node("Camera2D").add_trauma(0.3)
 	get_node("AnimatedSprite2D").modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	get_node("AnimatedSprite2D").modulate = Color.WHITE

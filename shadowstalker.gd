@@ -93,7 +93,7 @@ func horizontal_attack():
 			b.get_node("Sprite2D").flip_h = true
 		owner.add_child(b)
 		b.global_transform = $Muzzle.global_transform
-		b.position.y += randi_range(4, 7)
+		b.position.y += randi_range(15, 15)
 
 func return_to_center():
 	if position.x == 303:
