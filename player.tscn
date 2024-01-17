@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://iomxsyik6fev"]
+[gd_scene load_steps=46 format=3 uid="uid://iomxsyik6fev"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_61xva"]
 [ext_resource type="Script" path="res://HBoxContainer.gd" id="2_nsra5"]
@@ -32,6 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://11ggnxk70rlt" path="res://art/player/death/death5.png" id="14_kvnnk"]
 [ext_resource type="Texture2D" uid="uid://bsbukgfit78gq" path="res://art/player/death/death6.png" id="15_b7ex6"]
 [ext_resource type="Texture2D" uid="uid://dg3phr0n1ud62" path="res://art/player/death/death7.png" id="16_6qjc3"]
+[ext_resource type="Texture2D" uid="uid://dgigeaprynstg" path="res://art/player/flip/flip1.png" id="20_d1swm"]
+[ext_resource type="Texture2D" uid="uid://cmg7sv678eg1n" path="res://art/player/flip/flip2.png" id="21_pi6ju"]
+[ext_resource type="Texture2D" uid="uid://blfksbuhyun0f" path="res://art/player/flip/flip3.png" id="22_qlfxx"]
+[ext_resource type="Texture2D" uid="uid://chs8r8okgiy0s" path="res://art/player/flip/flip4.png" id="23_5fqqn"]
 [ext_resource type="Texture2D" uid="uid://7rvnotv7kqo0" path="res://art/player/stop/stop1.png" id="23_wflet"]
 [ext_resource type="Texture2D" uid="uid://gpdp6nkqfggb" path="res://art/player/stop/stop2.png" id="24_300rn"]
 [ext_resource type="Texture2D" uid="uid://3pjsvoc6uhpa" path="res://art/player/stop/stop3.png" id="25_ar1u3"]
@@ -112,6 +116,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_d1swm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_pi6ju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_qlfxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_5fqqn")
+}],
+"loop": true,
+"name": &"flip",
 "speed": 5.0
 }, {
 "frames": [{
@@ -273,9 +294,9 @@ shape = SubResource("RectangleShape2D_pcrfn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_axprr")
-animation = &"crouch"
+animation = &"flip"
 autoplay = "idle"
-frame_progress = 0.208039
+frame_progress = 0.527208
 
 [node name="Sword" type="Area2D" parent="."]
 visible = false

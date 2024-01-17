@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://gr20h5f0p4kf"]
+[gd_scene load_steps=6 format=3 uid="uid://gr20h5f0p4kf"]
 
 [ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="1_a33s1"]
+[ext_resource type="Script" path="res://Fadeinout.gd" id="2_5grnv"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="3_ahmfk"]
+[ext_resource type="Script" path="res://starwars.gd" id="4_f4lrg"]
+[ext_resource type="PackedScene" uid="uid://d22lihxkxchn8" path="res://pyroclast_fight.tscn" id="5_g3mq5"]
 
 [node name="ACT 2" type="Node2D"]
 
@@ -15,6 +19,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -32,4 +37,34 @@ text = "ACT II:
 TRIALS OF FIRE AND ICE"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_5grnv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -11.5
+offset_right = 126.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ahmfk")
+theme_override_font_sizes/font_size = 32
+text = "Continuing your journey, you arrive at the entrance of the Frostbitten Tundra. 
+A clandestine underground passage beckons – a conduit through the very heart of a volcano, the Blazing Forge.
+The air shimmers with an intense heat as you step into its embrace, 
+a stark contrast to the biting cold of the tundra.
+The journey through this dual realm, where ice and fire entwine, promises challenges and revelations alike."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("4_f4lrg")
+next_scene = ExtResource("5_g3mq5")
+timeonscreen = 15
 metadata/_edit_use_anchors_ = true

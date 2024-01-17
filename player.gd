@@ -21,7 +21,6 @@ var can_attack : bool = true
 var dead : bool = false
 
 func take_damage():
-	get_node("Camera2D").add_trauma(0.3)
 	get_node("AnimatedSprite2D").modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	get_node("AnimatedSprite2D").modulate = Color.WHITE
@@ -58,6 +57,7 @@ func _physics_process(delta):
 		$CollisionShape2D.scale = Vector2(0.5, 0.5)
 		$CollisionShape2D.position.y = 0
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
+		velocity.y += gravity * delta
 		move_and_slide()
 		return
 	else:
