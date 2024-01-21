@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://33i6q8626ugq"]
+[gd_scene load_steps=24 format=3 uid="uid://33i6q8626ugq"]
 
 [ext_resource type="Texture2D" uid="uid://cm1noqv62dyvb" path="res://art/bosses/shadowstalker/arena/tilemap.png" id="1_1u4ej"]
 [ext_resource type="PackedScene" uid="uid://lljogc8qagw3" path="res://shadowstalker.tscn" id="2_4j4qi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ivnqmonxulwj" path="res://enterportal.tscn" id="4_w18pf"]
 [ext_resource type="Texture2D" uid="uid://b5a6nvslg8cb0" path="res://art/pixil-frame-0 (1).png" id="5_avs73"]
 [ext_resource type="PackedScene" uid="uid://cdpv0o7h352pm" path="res://torch.tscn" id="6_an6of"]
+[ext_resource type="Texture2D" uid="uid://dju6ly7rebaup" path="res://art/bosses/shadowstalker/arena/door.png" id="6_rx5r5"]
 [ext_resource type="Texture2D" uid="uid://bio7t8lkgxr4e" path="res://art/light.png" id="8_scyc4"]
 [ext_resource type="PackedScene" uid="uid://d3wx1yk06f72d" path="res://exitportal.tscn" id="9_1chjh"]
 [ext_resource type="PackedScene" uid="uid://gr20h5f0p4kf" path="res://act_2.tscn" id="10_s7avq"]
@@ -148,9 +149,11 @@ position = Vector2(-293, 184)
 
 [node name="Door" parent="." instance=ExtResource("3_aopbe")]
 position = Vector2(-8, 144)
+texture = ExtResource("6_rx5r5")
 
 [node name="Door2" parent="." instance=ExtResource("3_aopbe")]
 position = Vector2(500, 176)
+texture = ExtResource("6_rx5r5")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(192, 144)
@@ -197,6 +200,6 @@ energy = 2.0
 texture = ExtResource("8_scyc4")
 
 [node name="ExitPortal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_1chjh")]
-position = Vector2(751, 172)
+position = Vector2(773, 146)
 next_scene = ExtResource("10_s7avq")
 player = NodePath("../Player")

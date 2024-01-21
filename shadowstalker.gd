@@ -43,6 +43,7 @@ var b = 0
 var tendrils_parent = Node2D.new()
 
 func _ready():
+	Global.stop()
 	randomize()
 	add_child(tendrils_parent)
 	# Global.shadowstalker()
@@ -69,6 +70,9 @@ func tendril_attack():
 var num_bullets = 1
 
 func horizontal_attack():
+	if not is_fighting:
+		return
+	
 	var positions = [25, 457]
 	state_machine.travel("death")
 	await get_tree().create_timer(3).timeout
@@ -115,6 +119,7 @@ func _physics_process(delta):
 		# player.can_attack = false
 	
 	if not finished_death and died:
+		Global.stop()
 		player.can_move = false
 		player.set_physics_process(false)
 		is_fighting = false
@@ -163,6 +168,7 @@ func _physics_process(delta):
 		should_start_death = true
 	
 	if finished_death:
+		is_fighting = false
 		exit.position.y = 0
 		player.can_move = true
 		player.set_physics_process(true)

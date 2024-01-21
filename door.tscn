@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7fdl16rxqtqt"]
+[gd_scene load_steps=4 format=3 uid="uid://b7fdl16rxqtqt"]
 
+[ext_resource type="Script" path="res://door.gd" id="1_pv3rg"]
 [ext_resource type="Texture2D" uid="uid://dju6ly7rebaup" path="res://art/bosses/shadowstalker/arena/door.png" id="1_u0pyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kh75g"]
 size = Vector2(10.5, 32)
 
 [node name="Door" type="CharacterBody2D"]
+script = ExtResource("1_pv3rg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u0pyx")
