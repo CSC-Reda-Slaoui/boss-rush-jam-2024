@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cifbcdy03u6pl"]
+
+[ext_resource type="Script" path="res://frostbite.gd" id="1_riehl"]
+[ext_resource type="Texture2D" uid="uid://df6ppiljpjoa7" path="res://art/bosses/frostbite/frostbite1.png" id="1_sa1qr"]
+[ext_resource type="PackedScene" uid="uid://gqu7o6yworob" path="res://ice_spike.tscn" id="2_p0nd7"]
+
+[sub_resource type="Curve" id="Curve_kiblf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m7jbt"]
+offsets = PackedFloat32Array(0.0915033, 0.627451, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.52876, 0.68171, 1, 1, 0.529412, 0.682353, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8tmv"]
+size = Vector2(40, 30.5)
+
+[node name="Frostbite" type="CharacterBody2D"]
+script = ExtResource("1_riehl")
+spike = ExtResource("2_p0nd7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-24, 21)
+amount = 1000
+lifetime = 1.5
+direction = Vector2(-1, 0)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 100.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.05
+linear_accel_min = -1.0
+linear_accel_max = 1.0
+radial_accel_min = -1.0
+radial_accel_max = 1.0
+tangential_accel_min = -1.0
+tangential_accel_max = 1.0
+damping_max = 10.0
+angle_min = -1.0
+angle_max = 1.0
+scale_amount_curve = SubResource("Curve_kiblf")
+color_ramp = SubResource("Gradient_m7jbt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sa1qr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(0, 7.25)
+shape = SubResource("RectangleShape2D_b8tmv")

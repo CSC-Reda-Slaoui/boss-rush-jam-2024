@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://gqu7o6yworob"]
+
+[ext_resource type="Script" path="res://ice_spike.gd" id="1_3h0hq"]
+[ext_resource type="Texture2D" uid="uid://s02ialopsgh8" path="res://art/bosses/frostbite/spikeattack/spike_attack1.png" id="1_npoyd"]
+[ext_resource type="Texture2D" uid="uid://oxdqa1fq5bcl" path="res://art/bosses/frostbite/spikeattack/spike_attack2.png" id="2_xa5hx"]
+[ext_resource type="Texture2D" uid="uid://cavuovjjghy8w" path="res://art/bosses/frostbite/spikeattack/spike_attack3.png" id="3_dxwtc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vg32q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_npoyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xa5hx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dxwtc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37o1t"]
+size = Vector2(50, 41)
+
+[sub_resource type="Gradient" id="Gradient_1h4cn"]
+colors = PackedColorArray(1, 1, 1, 1, 0.278431, 0.729412, 0.886275, 0)
+
+[node name="Ice Spike" type="Area2D"]
+script = ExtResource("1_3h0hq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vg32q")
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 10.5)
+shape = SubResource("RectangleShape2D_37o1t")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 31)
+amount = 50
+lifetime = 2.0
+direction = Vector2(0, -1)
+spread = 110.0
+gravity = Vector2(0, -9.8)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_1h4cn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
