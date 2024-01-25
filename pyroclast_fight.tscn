@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d22lihxkxchn8"]
+[gd_scene load_steps=13 format=3 uid="uid://d22lihxkxchn8"]
 
 [ext_resource type="Texture2D" uid="uid://cp04aasejhhbn" path="res://art/bosses/pyroclast/arena/spritesheet.png" id="1_a1jtu"]
 [ext_resource type="PackedScene" uid="uid://iomxsyik6fev" path="res://player.tscn" id="2_atkki"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bvqrea5jo8a03" path="res://art/bosses/pyroclast/arena/door.png" id="4_iron0"]
 [ext_resource type="PackedScene" uid="uid://cdpv0o7h352pm" path="res://torch.tscn" id="5_bbapq"]
 [ext_resource type="PackedScene" uid="uid://d3wx1yk06f72d" path="res://exitportal.tscn" id="8_uc8xb"]
+[ext_resource type="PackedScene" uid="uid://bo437h872sji5" path="res://frostbite_fight.tscn" id="9_jhjt6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cd210"]
 texture = ExtResource("1_a1jtu")
@@ -176,7 +177,9 @@ position = Vector2(659, 160)
 [node name="Torch8" parent="." instance=ExtResource("5_bbapq")]
 position = Vector2(759, 160)
 
-[node name="ExitPortal" parent="." instance=ExtResource("8_uc8xb")]
+[node name="ExitPortal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_uc8xb")]
 position = Vector2(802, 144)
+next_scene = ExtResource("9_jhjt6")
+player = NodePath("../Player")
 
 [connection signal="timeout" from="Timer" to="Pyroclast" method="_on_timer_timeout"]

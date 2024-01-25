@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl2cliyex0chy"
-path="res://.godot/imported/ice1.png-23be64bfa5cda86dfdef60ca945081c3.ctex"
+uid="uid://b5w01jx3dplgw"
+path="res://.godot/imported/door.png-4772b64145b4ddeddb0d19ed39b22b24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bosses/frostbite/ice1.png"
-dest_files=["res://.godot/imported/ice1.png-23be64bfa5cda86dfdef60ca945081c3.ctex"]
+source_file="res://art/bosses/frostbite/arena/door.png"
+dest_files=["res://.godot/imported/door.png-4772b64145b4ddeddb0d19ed39b22b24.ctex"]
 
 [params]
 

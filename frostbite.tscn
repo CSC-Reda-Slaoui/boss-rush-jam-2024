@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cifbcdy03u6pl"]
+[gd_scene load_steps=8 format=3 uid="uid://cifbcdy03u6pl"]
 
 [ext_resource type="Script" path="res://frostbite.gd" id="1_riehl"]
 [ext_resource type="Texture2D" uid="uid://df6ppiljpjoa7" path="res://art/bosses/frostbite/frostbite1.png" id="1_sa1qr"]
 [ext_resource type="PackedScene" uid="uid://gqu7o6yworob" path="res://ice_spike.tscn" id="2_p0nd7"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="4_fk301"]
 
 [sub_resource type="Curve" id="Curve_kiblf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -15,7 +16,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.52876, 0.68171, 1, 1, 0.529412, 0.682353
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8tmv"]
 size = Vector2(40, 30.5)
 
-[node name="Frostbite" type="CharacterBody2D"]
+[node name="Frostbite" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_riehl")
 spike = ExtResource("2_p0nd7")
 
@@ -46,6 +47,39 @@ color_ramp = SubResource("Gradient_m7jbt")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sa1qr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.25)
 shape = SubResource("RectangleShape2D_b8tmv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 1136.0
+offset_bottom = -17.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = -96.0
+offset_right = 1120.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_fk301")
+theme_override_font_sizes/font_size = 32
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 552.0
+offset_right = 96.0
+offset_bottom = 624.0
