@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo437h872sji5"]
+[gd_scene load_steps=13 format=3 uid="uid://bo437h872sji5"]
 
 [ext_resource type="Texture2D" uid="uid://dx36nbmeujmgu" path="res://art/bosses/frostbite/arena/tilemap.png" id="1_o13gy"]
 [ext_resource type="PackedScene" uid="uid://iomxsyik6fev" path="res://player.tscn" id="2_twin2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5w01jx3dplgw" path="res://art/bosses/frostbite/arena/door.png" id="7_w07q1"]
 [ext_resource type="PackedScene" uid="uid://d3wx1yk06f72d" path="res://exitportal.tscn" id="8_gc2ry"]
 [ext_resource type="PackedScene" uid="uid://bra2yoj5io6dy" path="res://act_3.tscn" id="9_4djg8"]
+[ext_resource type="PackedScene" uid="uid://bvc53qdg3h8sy" path="res://snow.tscn" id="10_ggtyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ep03h"]
 texture = ExtResource("1_o13gy")
@@ -48,6 +49,7 @@ collision_layer = 2
 collision_mask = 2
 player = NodePath("../Player")
 exit = NodePath("../Door")
+snow = ExtResource("10_ggtyy")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(299, -53)
@@ -110,3 +112,6 @@ texture = ExtResource("7_w07q1")
 position = Vector2(994, 147)
 next_scene = ExtResource("9_4djg8")
 player = NodePath("../Player")
+
+[node name="Snow" parent="." instance=ExtResource("10_ggtyy")]
+position = Vector2(307, 191)

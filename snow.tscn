@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvc53qdg3h8sy"]
+
+[ext_resource type="Script" path="res://snow.gd" id="1_7lqjf"]
+[ext_resource type="Texture2D" uid="uid://dd0b2gb5lj0vr" path="res://art/bosses/frostbite/arena/snow.png" id="2_cacj1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmkbq"]
+radius = 7.0
+
+[sub_resource type="Gradient" id="Gradient_jiwii"]
+offsets = PackedFloat32Array(0.582822, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Snow" type="Area2D"]
+script = ExtResource("1_7lqjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cacj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kmkbq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 50)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+damping_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_jiwii")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var player : Node2D
 @export var exit : Node2D
 @export var spike : PackedScene
+@export var snow : PackedScene
 
 @onready var player_texture = load("res://art/player/player.png")
 @onready var frostbite_texture = load("res://art/bosses/frostbite/frostbite.png")
@@ -57,6 +58,29 @@ func _ready():
 	player.friction /= 10
 	player.health *= 2
 	player.max_jump = 2
+
+var fly_height = 30
+var curr_position = 1
+
+func move():
+	if not is_fighting:
+		return
+	
+	var target_position = Vector2(0, 0)
+	if curr_position == 0:
+		target_position.x = 450
+		curr_position = 1
+	else:
+		target_position.x = 100
+		curr_position = 0
+	#while abs(position.x - target_position.x) > 0.1:
+	#position.x = lerp(position.x, target_position.x, 0.1)
+	var xtween = get_tree().create_tween()
+	var ytween = get_tree().create_tween()
+	xtween.tween_property(self, "position:x", target_position.x, 2).set_trans(Tween.TRANS_CUBIC)
+	ytween.tween_property(self, "position:y", 154, 1).set_trans(Tween.TRANS_BACK)
+	ytween.tween_property(self, "position:y", 119, 1).set_trans(Tween.TRANS_BACK)
+	#position.x = target_position.x
 
 func _physics_process(delta):
 	if abs(player.position.x - position.x) < 50 and not finished_dialogue:
@@ -126,9 +150,29 @@ func _physics_process(delta):
 	
 	if is_fighting:
 		var n = randi_range(1, 100)
+		
 		if n == 20:
 			var s = spike.instantiate()
 			owner.add_child(s)
 			s.position.y = 161
 			s.position.x = player.position.x + randi_range(-20, 20)
 			s.position.x = clampi(s.position.x, -12, 575)
+
+func rain_attack():
+	$CPUParticles2D.emitting = true
+	await get_tree().create_timer(2).timeout
+	$CPUParticles2D.emitting = false
+	
+	var num_balls = randi_range(25, 45)
+	for i in range(num_balls):
+		var b = snow.instantiate()
+		b.position.y = randi_range(-200, 0)
+		b.position.x = randi_range(-35, 581)
+		owner.add_child(b)
+
+func _on_timer_timeout():
+	if is_fighting:
+		rain_attack()
+
+func _on_move_timer_timeout():
+	move()

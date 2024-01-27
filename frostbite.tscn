@@ -1,13 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cifbcdy03u6pl"]
+[gd_scene load_steps=7 format=3 uid="uid://cifbcdy03u6pl"]
 
 [ext_resource type="Script" path="res://frostbite.gd" id="1_riehl"]
 [ext_resource type="Texture2D" uid="uid://df6ppiljpjoa7" path="res://art/bosses/frostbite/frostbite1.png" id="1_sa1qr"]
 [ext_resource type="PackedScene" uid="uid://gqu7o6yworob" path="res://ice_spike.tscn" id="2_p0nd7"]
 [ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="4_fk301"]
-
-[sub_resource type="Curve" id="Curve_kiblf"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_m7jbt"]
 offsets = PackedFloat32Array(0.0915033, 0.627451, 1)
@@ -22,12 +18,13 @@ spike = ExtResource("2_p0nd7")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(-24, 21)
-amount = 1000
-lifetime = 1.5
-direction = Vector2(-1, 0)
+emitting = false
+amount = 1500
+lifetime = 2.0
+direction = Vector2(0, -1)
 spread = 5.0
 gravity = Vector2(0, 0)
-initial_velocity_max = 100.0
+initial_velocity_max = 250.0
 angular_velocity_min = -100.0
 angular_velocity_max = 100.0
 orbit_velocity_min = -0.05
@@ -41,7 +38,8 @@ tangential_accel_max = 1.0
 damping_max = 10.0
 angle_min = -1.0
 angle_max = 1.0
-scale_amount_curve = SubResource("Curve_kiblf")
+scale_amount_min = 0.5
+scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_m7jbt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -83,3 +81,14 @@ offset_left = 24.0
 offset_top = 552.0
 offset_right = 96.0
 offset_bottom = 624.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
