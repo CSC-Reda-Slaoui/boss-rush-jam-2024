@@ -34,7 +34,7 @@ var current_dialogue = 0
 var entered = false
 var should_start_dialogue = false
 
-var health = 200
+var health = 250
 
 var should_start_death = false
 var current_death = 0
