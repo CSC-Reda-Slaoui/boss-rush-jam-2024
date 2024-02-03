@@ -46,7 +46,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wxpwk")
 theme_override_font_sizes/font_size = 64
-text = "KKK"
+text = "Ascension"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,13 +61,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wxpwk")
 theme_override_font_sizes/font_size = 32
 text = "START"
-
-[node name="Label3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_wxpwk")
-theme_override_font_sizes/font_size = 32
-text = "OPTIONS"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
