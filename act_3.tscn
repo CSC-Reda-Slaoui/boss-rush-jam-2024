@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bra2yoj5io6dy"]
+[gd_scene load_steps=5 format=3 uid="uid://bra2yoj5io6dy"]
 
 [ext_resource type="FontFile" uid="uid://exsgniiokrb2" path="res://PixelMiddle.ttf" id="1_7yxpu"]
+[ext_resource type="FontFile" uid="uid://l607x2impb7c" path="res://Lookout 7 Basic.ttf" id="2_boii5"]
+[ext_resource type="Script" path="res://Fadeinout.gd" id="2_wuhc1"]
+[ext_resource type="Script" path="res://starwars.gd" id="3_scmjy"]
 
 [node name="ACT 3" type="Node2D"]
 
@@ -29,7 +32,57 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_7yxpu")
 theme_override_font_sizes/font_size = 64
 text = "ACT III:
-HAUNTING ECHOES AND VOID'S EMBRACE"
+REVERSAL OF FATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wuhc1")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -11.5
+offset_right = 126.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_boii5")
+theme_override_font_sizes/font_size = 32
+text = "You ascend Wraithpeak Mountain and come upon the portal.
+Fate's tapestry unravels and you are allowed to pass.
+Faceless, memoryless, identityless, you must find your way...
+
+Sorry, our team ran into some problems during the jam and we weren't able to complete the game. 
+This is only about 30% of what we planned. "
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("3_scmjy")
+timeonscreen = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -11.5
+offset_right = 126.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_boii5")
+theme_override_font_sizes/font_size = 32
+text = "Thanks for playing (:"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

@@ -12,4 +12,7 @@ func _ready():
 	await tween.tween_property(self, "visible_ratio", 1, timeonscreen)
 	await tween.tween_property(self, "modulate", Color.BLACK, 2).finished
 	
-	get_tree().change_scene_to_packed(next_scene)
+	if next_scene:
+		get_tree().change_scene_to_packed(next_scene)
+	else:
+		get_parent().get_node("Label3").visible = true
